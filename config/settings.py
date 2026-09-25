@@ -26,8 +26,7 @@ SECRET_KEY = "django-insecure-zh8k*&xmj*)xk7tin#jjc%2qfozf9t(hg3%7sqk=pouz!l)yh5
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LANGUAGE_CODE = "ru"
-TIME_ZONE = "Asia/Almaty"
+
 
 # Application definition
 
@@ -104,9 +103,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Almaty"
 
 USE_I18N = True
 
