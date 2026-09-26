@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Проекты | Артем Кудинов{% endblock %}
+
+{% block content %}
+    <h2>Проекты</h2>
+
+    {% for project in projects %}
+        <article class="project-card">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.summary }}</p>
+            <p class="stack">{{ project.stack }}</p>
+        </article>
+    {% empty %}
+        <p>Проектов пока нет.</p>
+    {% endfor %}
+{% endblock %}
