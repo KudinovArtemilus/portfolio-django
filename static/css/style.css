@@ -67,3 +67,36 @@ h2 {
     font-size: 0.875rem;
     margin-top: 0.75rem;
 }
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--muted);
+}
+
+.description p {
+    margin-bottom: 1rem;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+}
+
+.button:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+}

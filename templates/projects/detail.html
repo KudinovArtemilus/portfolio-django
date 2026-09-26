@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Артем Кудинов{% endblock %}
+
+{% block content %}
+    <a href="{% url 'projects:list' %}" class="back">← Все проекты</a>
+
+    <article class="project-detail">
+        <h2>{{ project.title }}</h2>
+        <p class="stack">{{ project.stack }}</p>
+
+        <div class="description">
+            {{ project.description|linebreaks }}
+        </div>
+
+        {% if project.github_url %}
+            <a href="{{ project.github_url }}" class="button" target="_blank">Код на GitHub</a>
+        {% endif %}
+    </article>
+{% endblock %}

@@ -7,7 +7,7 @@
 
     {% for project in projects %}
         <article class="project-card">
-            <h3>{{ project.title }}</h3>
+            <h3><a href="{% url 'projects:detail' project.slug %}">{{ project.title }}</a></h3>
             <p>{{ project.summary }}</p>
             <p class="stack">{{ project.stack }}</p>
         </article>
