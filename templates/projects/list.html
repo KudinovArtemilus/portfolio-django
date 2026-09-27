@@ -1,3 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Проекты | Артем Кудинов{% endblock %}
+
+{% block content %}
+    <h2>Проекты</h2>
+
+    <input
+        type="search"
+        name="q"
+        value="{{ query }}"
+        placeholder="Поиск: название или технология…"
+        class="search"
+        hx-get="{% url 'projects:list' %}"
+        hx-trigger="input changed delay:300ms, search"
+        hx-target="#project-list"
+    >
+
     <div id="project-list">
         {% include "projects/_cards.html" %}
     </div>
+{% endblock %}

@@ -120,3 +120,19 @@ nav a {
     color: var(--text);
     margin-left: 1.5rem;
 }
+
+.search {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--muted);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 1rem;
+}
+
+.search:focus {
+    outline: none;
+    border-color: var(--accent);
+}
