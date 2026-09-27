@@ -1,7 +1,55 @@
 {% extends "base.html" %}
 
-{% block title %}Главная | Артем Кудинов{% endblock %}
+{% block title %}Артем Кудинов — инженер-разработчик{% endblock %}
 
 {% block content %}
-    <p>Привет! Меня зовут {{ name }}.</p>
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="hero-name">Артем Кудинов</h1>
+            <p class="hero-role">Инженер-разработчик промышленных систем</p>
+
+            <p class="hero-intro">
+                Соединяю производство и программирование. Превращаю данные
+                с заводского оборудования в понятные инструменты: отчёты,
+                мониторинг и аналитику, которые помогают принимать решения
+                и предупреждать простои.
+            </p>
+
+            <p class="hero-langs">Пишу на Python, Java и SQL.</p>
+
+            <div class="hero-actions">
+                <a href="{% url 'projects:list' %}" class="button button-primary">Смотреть проекты</a>
+                <a href="#contacts" class="button">Написать мне</a>
+            </div>
+        </div>
+
+        <figure class="hero-drawing">
+            <svg viewBox="0 0 400 400" role="img" aria-labelledby="wheel-title">
+                <title id="wheel-title">Чертёж железнодорожного колеса</title>
+                <defs>
+                    <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5"
+                            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                        <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+                    </marker>
+                </defs>
+
+                <line class="centerline" x1="10" y1="200" x2="390" y2="200"/>
+                <line class="centerline" x1="200" y1="10" x2="200" y2="390"/>
+
+                <circle class="wheel-part" cx="200" cy="200" r="180" pathLength="1"/>
+                <circle class="wheel-part wheel-thin" cx="200" cy="200" r="168" pathLength="1" style="animation-delay: .15s"/>
+                <circle class="wheel-part" cx="200" cy="200" r="146" pathLength="1" style="animation-delay: .3s"/>
+                <circle class="wheel-part" cx="200" cy="200" r="64" pathLength="1" style="animation-delay: .45s"/>
+                <circle class="wheel-part" cx="200" cy="200" r="34" pathLength="1" style="animation-delay: .6s"/>
+
+                <g class="dimension-group">
+                    <line class="dimension" x1="81.2" y1="318.8" x2="318.8" y2="81.2"
+                          marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+                    <text class="dimension-text" x="249" y="139" text-anchor="middle"
+                          transform="rotate(-45 249 139)">Ø957</text>
+                </g>
+            </svg>
+            <figcaption>Цельнокатаное колесо — то, что выпускает наш завод</figcaption>
+        </figure>
+    </section>
 {% endblock %}
