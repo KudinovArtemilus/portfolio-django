@@ -1,0 +1,9 @@
+{% for project in projects %}
+    <article class="project-card">
+        <h3><a href="{% url 'projects:detail' project.slug %}">{{ project.title }}</a></h3>
+        <p>{{ project.summary }}</p>
+        <p class="stack">{{ project.stack }}</p>
+    </article>
+{% empty %}
+    <p>Проектов не найдено.</p>
+{% endfor %}
