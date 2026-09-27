@@ -326,3 +326,36 @@ nav a {
         scroll-behavior: smooth;
     }
 }
+
+.work {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+}
+
+.work-item {
+    padding: 1.5rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.work-item h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.work-item p {
+    color: var(--muted);
+}
+
+@media (max-width: 760px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+}
