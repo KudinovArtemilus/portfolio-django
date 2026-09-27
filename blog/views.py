@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-# Create your views here.
+from .models import Post
+
+
+def post_list(request):
+    posts = Post.objects.filter(is_published=True)
+    return render(request, "blog/list.html", {"posts": posts})
+
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug, is_published=True)
+    return render(request, "blog/detail.html", {"post": post})

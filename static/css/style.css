@@ -382,3 +382,102 @@ nav a {
     color: var(--muted);
     margin-bottom: 2rem;
 }
+
+/* Блог: список */
+.post-item {
+    border-bottom: 1px solid var(--line);
+    padding: 1.5rem 0;
+}
+
+.post-item time,
+.article time {
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
+.post-item h3 {
+    margin: 0.25rem 0 0.5rem;
+}
+
+.post-item p {
+    color: var(--muted);
+}
+
+/* Блог: статья */
+.article {
+    max-width: 42em;
+}
+
+.article h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.15;
+    margin: 0.5rem 0 2rem;
+}
+
+.article-body h2 {
+    font-size: 1.5rem;
+    margin: 2.5rem 0 1rem;
+}
+
+.article-body h3 {
+    font-size: 1.2rem;
+    margin: 2rem 0 0.75rem;
+}
+
+.article-body p,
+.article-body ul,
+.article-body ol,
+.article-body table,
+.article-body pre,
+.article-body blockquote {
+    margin-bottom: 1.25rem;
+}
+
+.article-body ul,
+.article-body ol {
+    padding-left: 1.5rem;
+}
+
+.article-body li {
+    margin-bottom: 0.4rem;
+}
+
+.article-body code {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--surface);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+}
+
+.article-body pre {
+    background: var(--text);
+    color: var(--bg);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    overflow-x: auto;
+}
+
+.article-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+.article-body blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    color: var(--muted);
+}
+
+.article-body table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.article-body th,
+.article-body td {
+    border: 1px solid var(--line);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}

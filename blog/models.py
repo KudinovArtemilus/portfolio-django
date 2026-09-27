@@ -1,5 +1,7 @@
+import markdown
 from django.db import models
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 
 
 class Post(models.Model):
@@ -18,3 +20,10 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def body_html(self):
+        html = markdown.markdown(
+            self.body,
+            extensions=["fenced_code", "tables"],
+        )
+        return mark_safe(html)

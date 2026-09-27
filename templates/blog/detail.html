@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} | Артем Кудинов{% endblock %}
+{% block description %}{{ post.summary }}{% endblock %}
+{% block og_title %}{{ post.title }}{% endblock %}
+{% block og_description %}{{ post.summary }}{% endblock %}
+
+{% block content %}
+    <a href="{% url 'blog:list' %}" class="back">← Все статьи</a>
+
+    <article class="article">
+        <time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|date:"j E Y" }}</time>
+        <h1>{{ post.title }}</h1>
+
+        <div class="article-body">
+            {{ post.body_html }}
+        </div>
+    </article>
+{% endblock %}
