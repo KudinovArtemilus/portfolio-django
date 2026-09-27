@@ -100,3 +100,23 @@ a:hover {
     color: var(--bg);
     text-decoration: none;
 }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    color: var(--accent);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+nav a {
+    color: var(--text);
+    margin-left: 1.5rem;
+}

@@ -9,7 +9,11 @@
 </head>
 <body>
     <header>
-        <h1>Артем Кудинов</h1>
+        <a href="{% url 'home' %}" class="logo">Артем Кудинов</a>
+        <nav>
+            <a href="{% url 'home' %}">Главная</a>
+            <a href="{% url 'projects:list' %}">Проекты</a>
+        </nav>
     </header>
 
     <main>
