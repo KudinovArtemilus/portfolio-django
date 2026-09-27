@@ -2,6 +2,17 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+        <meta name="description" content="{% block description %}Инженер-разработчик промышленных систем: мониторинг оборудования, отчёты и аналитика данных производства.{% endblock %}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Артем Кудинов">
+    <meta property="og:title" content="{% block og_title %}Артем Кудинов — инженер-разработчик{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Мониторинг оборудования, отчёты и аналитика данных производства.{% endblock %}">
+    <meta property="og:url" content="https://portfolio-kudinov.vercel.app{{ request.path }}">
+    <meta property="og:image" content="https://portfolio-kudinov.vercel.app{% static 'img/og.png' %}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Артем Кудинов{% endblock %}</title>

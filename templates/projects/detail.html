@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block title %}{{ project.title }} | Артем Кудинов{% endblock %}
-
+{% block description %}{{ project.summary }}{% endblock %}
+{% block og_title %}{{ project.title }} — Артем Кудинов{% endblock %}
+{% block og_description %}{{ project.summary }}{% endblock %}
 {% block content %}
     <a href="{% url 'projects:list' %}" class="back">← Все проекты</a>
 
