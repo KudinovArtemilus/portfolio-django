@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Страница не найдена | Артем Кудинов{% endblock %}
+
+{% block content %}
+    <section class="error-page">
+        <p class="error-code">404</p>
+        <h1>Такой страницы нет</h1>
+        <p>Возможно, адрес набран с ошибкой или страница была удалена.</p>
+        <a href="{% url 'home' %}" class="button button-primary">На главную</a>
+    </section>
+{% endblock %}

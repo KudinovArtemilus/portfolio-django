@@ -359,3 +359,26 @@ nav a {
         grid-template-columns: 1fr;
     }
 }
+
+.error-page {
+    padding: 4rem 0;
+    max-width: 36em;
+}
+
+.error-code {
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--line);
+    margin-bottom: 1rem;
+}
+
+.error-page h1 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.error-page p {
+    color: var(--muted);
+    margin-bottom: 2rem;
+}
