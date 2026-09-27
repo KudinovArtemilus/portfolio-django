@@ -33,8 +33,12 @@ else:
 DEBUG = not IS_VERCEL
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".vercel.app"]
-
-
+if IS_VERCEL:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 3600
 # Application definition
 
 INSTALLED_APPS = [
