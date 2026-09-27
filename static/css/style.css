@@ -284,3 +284,45 @@ nav a {
         margin: 0 auto;
     }
 }
+
+.contacts {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0 1rem;
+}
+
+.contacts-intro {
+    max-width: 36em;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+}
+
+.contacts-list {
+    max-width: 480px;
+    border: 1px solid var(--line);
+}
+
+.contacts-list div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    border-bottom: 1px solid var(--line);
+}
+
+.contacts-list div:last-child {
+    border-bottom: none;
+}
+
+.contacts-list dt {
+    padding: 0.75rem 1rem;
+    color: var(--muted);
+    border-right: 1px solid var(--line);
+}
+
+.contacts-list dd {
+    padding: 0.75rem 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
