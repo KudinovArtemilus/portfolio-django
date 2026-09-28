@@ -1,25 +1,30 @@
 {% extends "base.html" %}
 
 {% block title %}Обо мне | Артем Кудинов{% endblock %}
-{% block description %}Инженер АСУ ТП с 14-летним опытом. Разработка инструментов сбора и анализа производственных данных.{% endblock %}
-{% block og_title %}Артем Кудинов — обо мне{% endblock %}
-{% block og_description %}Инженер АСУ ТП с 14-летним опытом. Разработка инструментов сбора и анализа производственных данных.{% endblock %}
+{% block description %}{{ profile.role }}{% endblock %}
+{% block og_title %}{{ profile.full_name }} — обо мне{% endblock %}
+{% block og_description %}{{ profile.role }}{% endblock %}
 
 {% block content %}
     <article class="resume">
-        <header class="resume-header">
-            <h1>Артем Кудинов</h1>
-            <p class="resume-role">Инженер АСУ ТП и разработчик промышленной аналитики</p>
-            <p class="resume-meta">Экибастуз, Казахстан · kudinovartemilus@gmail.com · t.me/kudinovartem · github.com/KudinovArtemilus</p>
-            <button type="button" class="button print-button" onclick="window.print()">Сохранить в PDF</button>
-        </header>
+        {% if profile %}
+            <header class="resume-header">
+                <h1>{{ profile.full_name }}</h1>
+                <p class="resume-role">{{ profile.role }}</p>
+                <p class="resume-meta">
+                    {% if profile.location %}{{ profile.location }}{% endif %}
+                    {% if profile.email %} · <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>{% endif %}
+                    {% if profile.telegram %} · <a href="https://t.me/{{ profile.telegram }}" target="_blank" rel="noopener">t.me/{{ profile.telegram }}</a>{% endif %}
+                    {% if profile.github %} · <a href="https://github.com/{{ profile.github }}" target="_blank" rel="noopener">github.com/{{ profile.github }}</a>{% endif %}
+                </p>
+                <button type="button" class="button print-button" onclick="window.print()">Сохранить в PDF</button>
+            </header>
 
-        <section class="resume-section">
-            <h2>О себе</h2>
-            <p>Инженер АСУ ТП с 14-летним опытом: контроллеры Siemens, SCADA, пусконаладка и поиск причин простоев на металлургическом и машиностроительном производстве.</p>
-            <p>Использую этот опыт, чтобы создавать инструменты, которых не хватает службе АСУ: системы сбора данных с ПЛК, тренды и сменные отчёты, аналитику простоев и статистическое обнаружение аномалий. Понимаю, что происходит на линии, и поэтому знаю, какие данные действительно нужны инженеру и мастеру смены.</p>
-            <p>Изучаю программирование и машинное обучение, чтобы следующим шагом перейти к предиктивному обслуживанию оборудования.</p>
-        </section>
+            <section class="resume-section">
+                <h2>О себе</h2>
+                {{ profile.about|linebreaks }}
+            </section>
+        {% endif %}
 
         <section class="resume-section">
             <h2>Опыт работы</h2>
@@ -52,36 +57,19 @@
             {% endfor %}
         </section>
 
-        <section class="resume-section">
-            <h2>Образование</h2>
-            <div class="job">
-                <p class="job-dates">2018</p>
-                <div>
-                    <h3>Сибирский государственный университет телекоммуникаций и информатики</h3>
-                    <p class="job-company">Высшее, многоканальная связь</p>
-                </div>
-            </div>
-            <div class="job">
-                <p class="job-dates">2010</p>
-                <div>
-                    <h3>Экибастузский гуманитарно-технический колледж</h3>
-                    <p class="job-company">Среднее специальное, программное обеспечение</p>
-                </div>
-            </div>
-            <div class="job">
-                <p class="job-dates">2026</p>
-                <div>
-                    <h3>Skillbox</h3>
-                    <p class="job-company">Java Core, сертификат</p>
-                </div>
-            </div>
-            <div class="job">
-                <p class="job-dates">2025</p>
-                <div>
-                    <h3>ООО «Консульт Сервис»</h3>
-                    <p class="job-company">Программирование и конфигурирование 1С:Предприятие 8.3, профессиональная переподготовка</p>
-                </div>
-            </div>
-        </section>
+        {% if education %}
+            <section class="resume-section">
+                <h2>Образование и курсы</h2>
+                {% for item in education %}
+                    <div class="job">
+                        <p class="job-dates">{{ item.year }}</p>
+                        <div>
+                            <h3>{{ item.institution }}</h3>
+                            <p class="job-company">{{ item.details }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endif %}
     </article>
 {% endblock %}
