@@ -663,3 +663,20 @@ nav a {
     line-height: 1.15;
     margin-bottom: 0.5rem;
 }
+
+.article-body img {
+    display: block;
+    max-width: min(100%, 720px);
+    height: auto;
+    margin: 1.5rem auto 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+}
+
+.article-body img + em {
+    display: block;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
