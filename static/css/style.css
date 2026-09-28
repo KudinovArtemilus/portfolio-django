@@ -657,3 +657,9 @@ nav a {
         border: 0.5pt solid #999;
     }
 }
+
+.project-detail h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+}

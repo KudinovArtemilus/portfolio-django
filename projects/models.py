@@ -1,4 +1,6 @@
+import markdown
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class Project(models.Model):
@@ -19,3 +21,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+    def description_html(self):
+        html = markdown.markdown(
+            self.description,
+            extensions=["fenced_code", "tables"],
+        )
+        return mark_safe(html)
