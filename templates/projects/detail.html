@@ -9,8 +9,20 @@
     <a href="{% url 'projects:list' %}" class="back">← Все проекты</a>
 
     <article class="project-detail">
-        <h1>{{ project.title }}</h1>
-        <p class="stack">{{ project.stack }}</p>
+        <div class="project-head">
+            <div>
+                <h1>{{ project.title }}</h1>
+                <p class="stack">{{ project.stack }}</p>
+            </div>
+
+            {% if project.drawing %}
+                <figure class="project-drawing">
+                    {% with "drawings/"|add:project.drawing|add:".html" as drawing_template %}
+                        {% include drawing_template %}
+                    {% endwith %}
+                </figure>
+            {% endif %}
+        </div>
 
         <div class="article-body">
             {{ project.description_html }}

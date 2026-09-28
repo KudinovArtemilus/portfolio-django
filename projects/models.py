@@ -10,6 +10,14 @@ class Project(models.Model):
     description = models.TextField("Подробное описание")
     stack = models.CharField("Стек", max_length=200)
     github_url = models.URLField("Ссылка на GitHub", blank=True)
+    drawing = models.CharField(
+        "Чертёж",
+        max_length=30,
+        blank=True,
+        choices=[
+            ("plc_rack", "Стойка ПЛК"),
+        ],
+    )
     order = models.PositiveIntegerField("Порядок", default=0)
     is_published = models.BooleanField("Опубликован", default=True)
     created_at = models.DateTimeField("Создан", auto_now_add=True)

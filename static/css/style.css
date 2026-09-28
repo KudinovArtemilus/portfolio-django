@@ -680,3 +680,58 @@ nav a {
     font-size: 0.875rem;
     margin-bottom: 1.5rem;
 }
+
+.project-head {
+    display: grid;
+    grid-template-columns: 1fr minmax(200px, 300px);
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.project-drawing {
+    margin: 0;
+    color: var(--text);
+}
+
+.project-drawing svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.project-drawing .module {
+    fill: var(--bg);
+}
+
+.project-drawing .wire {
+    stroke: var(--muted);
+}
+
+.project-drawing .extension {
+    stroke: var(--line);
+    stroke-width: 1;
+}
+
+.project-drawing .led {
+    fill: currentColor;
+    opacity: 0;
+    animation: appear 0.4s ease-out 1s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-drawing .led {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 760px) {
+    .project-head {
+        grid-template-columns: 1fr;
+    }
+
+    .project-drawing {
+        max-width: 260px;
+    }
+}

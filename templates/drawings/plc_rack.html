@@ -1,0 +1,63 @@
+<svg viewBox="0 0 400 270" role="img" aria-labelledby="plc-title">
+    <title id="plc-title">Чертёж стойки контроллера Siemens S7-300</title>
+    <defs>
+        <marker id="arrow-plc" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+        </marker>
+    </defs>
+
+    <!-- Профильная рейка -->
+    <rect class="wheel-part" x="20" y="80" width="360" height="110" rx="2" pathLength="1"/>
+
+    <!-- Модули: блок питания, процессор, 4 сигнальных -->
+    <rect class="wheel-part module" x="40" y="60" width="54" height="150" rx="3" pathLength="1" style="animation-delay: .15s"/>
+    <rect class="wheel-part module" x="100" y="60" width="62" height="150" rx="3" pathLength="1" style="animation-delay: .25s"/>
+    <rect class="wheel-part module" x="168" y="60" width="40" height="150" rx="3" pathLength="1" style="animation-delay: .35s"/>
+    <rect class="wheel-part module" x="214" y="60" width="40" height="150" rx="3" pathLength="1" style="animation-delay: .45s"/>
+    <rect class="wheel-part module" x="260" y="60" width="40" height="150" rx="3" pathLength="1" style="animation-delay: .55s"/>
+    <rect class="wheel-part module" x="306" y="60" width="40" height="150" rx="3" pathLength="1" style="animation-delay: .65s"/>
+
+    <line class="centerline" x1="8" y1="135" x2="392" y2="135"/>
+
+    <!-- Блок питания -->
+    <circle class="wheel-part wheel-thin" cx="67" cy="95" r="8" pathLength="1" style="animation-delay: .8s"/>
+    <circle class="led" cx="67" cy="125" r="2.5"/>
+    <line class="wheel-part wheel-thin" x1="52" y1="170" x2="82" y2="170" pathLength="1" style="animation-delay: .85s"/>
+    <line class="wheel-part wheel-thin" x1="52" y1="180" x2="82" y2="180" pathLength="1" style="animation-delay: .85s"/>
+
+    <!-- Процессор -->
+    <circle class="led" cx="114" cy="80" r="2.5"/>
+    <circle class="led" cx="114" cy="92" r="2.5"/>
+    <circle class="led" cx="114" cy="104" r="2.5"/>
+    <circle class="led" cx="114" cy="116" r="2.5"/>
+    <rect class="wheel-part wheel-thin" x="128" y="76" width="24" height="12" rx="2" pathLength="1" style="animation-delay: .9s"/>
+    <rect class="wheel-part wheel-thin" x="112" y="140" width="38" height="8" rx="1" pathLength="1" style="animation-delay: .9s"/>
+    <rect class="wheel-part wheel-thin" x="116" y="168" width="30" height="22" rx="2" pathLength="1" style="animation-delay: .9s"/>
+
+    <!-- Полоски маркировки сигнальных модулей -->
+    <rect class="wheel-part wheel-thin" x="175" y="78" width="26" height="112" rx="1" pathLength="1" style="animation-delay: .95s"/>
+    <rect class="wheel-part wheel-thin" x="221" y="78" width="26" height="112" rx="1" pathLength="1" style="animation-delay: 1s"/>
+    <rect class="wheel-part wheel-thin" x="267" y="78" width="26" height="112" rx="1" pathLength="1" style="animation-delay: 1.05s"/>
+    <rect class="wheel-part wheel-thin" x="313" y="78" width="26" height="112" rx="1" pathLength="1" style="animation-delay: 1.1s"/>
+
+    <!-- Провода -->
+    <path class="wheel-part wheel-thin wire" d="M180 210 V232 Q180 240 172 244 L160 252" pathLength="1" style="animation-delay: 1.2s"/>
+    <path class="wheel-part wheel-thin wire" d="M188 210 V250" pathLength="1" style="animation-delay: 1.2s"/>
+    <path class="wheel-part wheel-thin wire" d="M196 210 V232 Q196 240 204 244 L216 252" pathLength="1" style="animation-delay: 1.2s"/>
+    <path class="wheel-part wheel-thin wire" d="M226 210 V250" pathLength="1" style="animation-delay: 1.25s"/>
+    <path class="wheel-part wheel-thin wire" d="M242 210 V250" pathLength="1" style="animation-delay: 1.25s"/>
+    <path class="wheel-part wheel-thin wire" d="M272 210 V250" pathLength="1" style="animation-delay: 1.3s"/>
+    <path class="wheel-part wheel-thin wire" d="M288 210 V250" pathLength="1" style="animation-delay: 1.3s"/>
+    <path class="wheel-part wheel-thin wire" d="M318 210 V250" pathLength="1" style="animation-delay: 1.35s"/>
+    <path class="wheel-part wheel-thin wire" d="M334 210 V232 Q334 240 342 244 L354 252" pathLength="1" style="animation-delay: 1.35s"/>
+
+    <!-- Размер -->
+    <g class="dimension-group">
+        <line class="extension" x1="40" y1="56" x2="40" y2="24"/>
+        <line class="extension" x1="346" y1="56" x2="346" y2="24"/>
+        <line class="dimension" x1="40" y1="32" x2="346" y2="32"
+              marker-start="url(#arrow-plc)" marker-end="url(#arrow-plc)"/>
+        <text class="dimension-text" x="193" y="26" text-anchor="middle">S7-300</text>
+    </g>
+</svg>
