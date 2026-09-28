@@ -19,10 +19,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 from pages.views import home
+from resume.views import about
 
 urlpatterns = [
     path("panel-a7k2/", admin.site.urls),
     path("projects/", include("projects.urls")),
     path("blog/", include("blog.urls")),
     path("", home, name="home"),
+    path("about/", about, name="about"),
 ]
