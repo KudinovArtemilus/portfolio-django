@@ -482,3 +482,178 @@ nav a {
     padding: 0.5rem 0.75rem;
     text-align: left;
 }
+
+/* Резюме: экран */
+.resume {
+    max-width: 48em;
+}
+
+.resume-header {
+    display: block;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 2.5rem;
+}
+
+.resume-header h1 {
+    font-size: clamp(2.25rem, 6vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.resume-role {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+}
+
+.resume-meta {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.print-button {
+    margin-top: 0;
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    cursor: pointer;
+}
+
+.resume-section {
+    border-top: 1px solid var(--line);
+    padding: 2rem 0;
+}
+
+.resume-section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+}
+
+.resume-section > p {
+    margin-bottom: 1rem;
+}
+
+.job {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.job-dates {
+    color: var(--muted);
+    font-size: 0.9rem;
+    padding-top: 0.2rem;
+}
+
+.job h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.15rem;
+}
+
+.job-company {
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.skill-group {
+    margin-bottom: 1.25rem;
+}
+
+.skill-group h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.skill-list li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 760px) {
+    .job {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+}
+
+/* Резюме: печать и PDF */
+@media print {
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        font-size: 10.5pt;
+    }
+
+    body > header,
+    footer,
+    .print-button {
+        display: none;
+    }
+
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .resume {
+        max-width: none;
+    }
+
+    .resume-header {
+        margin-bottom: 12pt;
+    }
+
+    .resume-header h1 {
+        font-size: 22pt;
+    }
+
+    .resume-role,
+    .resume-meta,
+    .job-dates,
+    .job-company {
+        color: #333;
+    }
+
+    .resume-section {
+        border-top: 0.5pt solid #999;
+        padding: 10pt 0;
+    }
+
+    .resume-section h2 {
+        font-size: 13pt;
+        margin-bottom: 8pt;
+        break-after: avoid;
+    }
+
+    .job {
+        grid-template-columns: 30mm 1fr;
+        gap: 6mm;
+        margin-bottom: 8pt;
+        break-inside: avoid;
+    }
+
+    .skill-list li {
+        background: none;
+        border: 0.5pt solid #999;
+    }
+}
