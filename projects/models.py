@@ -16,6 +16,7 @@ class Project(models.Model):
         blank=True,
         choices=[
             ("plc_rack", "Стойка ПЛК"),
+            ("pis_charts", "Параметры и графики"),
         ],
     )
     order = models.PositiveIntegerField("Порядок", default=0)

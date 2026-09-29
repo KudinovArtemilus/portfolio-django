@@ -735,3 +735,38 @@ nav a {
         max-width: 260px;
     }
 }
+
+.project-drawing .wheel-part {
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.project-drawing .accent-line {
+    stroke: var(--accent);
+}
+
+.project-drawing .muted-line {
+    stroke: var(--muted);
+}
+
+.project-drawing .point {
+    fill: var(--bg);
+    stroke: var(--accent);
+    stroke-width: 2;
+}
+
+.project-drawing .flow-head {
+    fill: currentColor;
+}
+
+.project-drawing .late {
+    opacity: 0;
+    animation: appear 0.3s ease-out 1.6s forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-drawing .late {
+        animation: none;
+        opacity: 1;
+    }
+}
