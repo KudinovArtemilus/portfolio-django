@@ -845,3 +845,22 @@ nav a {
 .article-drawing .dimension-text {
     font-size: 11px;
 }
+
+.project-drawing .billet {
+    fill: var(--bg);
+    stroke: currentColor;
+    stroke-width: 1;
+}
+
+.project-drawing .billet-bad {
+    fill: var(--bg);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+}
+
+.project-drawing .nominal {
+    fill: none;
+    stroke: var(--line);
+    stroke-width: 1;
+    stroke-dasharray: 4 3;
+}

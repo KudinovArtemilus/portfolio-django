@@ -1,0 +1,71 @@
+<svg viewBox="0 10 400 200" role="img" aria-labelledby="carts-title">
+    <title id="carts-title">Схема: тележки движутся по кругу между манипуляторами укладки и съёма; на тележках 3 и 4 заготовка смещена от центра</title>
+    <defs>
+        <marker id="arrow-carts" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+        </marker>
+    </defs>
+
+    <!-- Путь тележек -->
+    <rect class="wheel-part" x="40" y="80" width="200" height="100" rx="50" pathLength="1"/>
+
+    <!-- Манипуляторы -->
+    <path class="wheel-part" d="M80 30 H100 M90 30 V42 L102 52 V64" pathLength="1" style="animation-delay: .3s"/>
+    <path class="wheel-part wheel-thin" d="M96 64 H108 M96 64 V70 M108 64 V70" pathLength="1" style="animation-delay: .5s"/>
+    <path class="wheel-part" d="M160 30 H180 M170 30 V42 L182 52 V64" pathLength="1" style="animation-delay: .4s"/>
+    <path class="wheel-part wheel-thin" d="M176 64 H188 M176 64 V70 M188 64 V70" pathLength="1" style="animation-delay: .6s"/>
+
+    <!-- Тележки -->
+    <rect class="wheel-part wheel-thin module" x="95" y="73" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .5s"/>
+    <rect class="wheel-part wheel-thin module" x="135" y="73" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .55s"/>
+    <rect class="wheel-part accent-line module" x="175" y="73" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .6s"/>
+    <rect class="wheel-part accent-line module" x="215" y="73" width="14" height="14" rx="2" transform="rotate(20 222 80)" pathLength="1" style="animation-delay: .65s"/>
+    <rect class="wheel-part wheel-thin module" x="233" y="123" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .7s"/>
+    <rect class="wheel-part wheel-thin module" x="195" y="173" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .75s"/>
+    <rect class="wheel-part wheel-thin module" x="155" y="173" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .8s"/>
+    <rect class="wheel-part wheel-thin module" x="115" y="173" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .85s"/>
+    <rect class="wheel-part wheel-thin module" x="75" y="173" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .9s"/>
+    <rect class="wheel-part wheel-thin module" x="33" y="123" width="14" height="14" rx="2" pathLength="1" style="animation-delay: .95s"/>
+
+    <!-- Заготовки: на тележках 3 и 4 смещены -->
+    <g class="late">
+        <circle class="billet" cx="102" cy="80" r="4"/>
+        <circle class="billet" cx="142" cy="80" r="4"/>
+        <circle class="billet-bad" cx="184" cy="78" r="4"/>
+        <circle class="billet-bad" cx="224" cy="78" r="4"/>
+        <circle class="billet" cx="240" cy="130" r="4"/>
+        <circle class="billet" cx="202" cy="180" r="4"/>
+        <circle class="billet" cx="162" cy="180" r="4"/>
+        <circle class="billet" cx="122" cy="180" r="4"/>
+        <circle class="billet" cx="82" cy="180" r="4"/>
+        <circle class="billet" cx="40" cy="130" r="4"/>
+    </g>
+
+    <!-- Направление движения -->
+    <path class="wheel-part wheel-thin" d="M95 115 A45 20 0 0 1 185 115" pathLength="1" style="animation-delay: 1s"/>
+    <path class="late flow-head" d="M181 109 L189 117 L178 118 z"/>
+
+    <!-- Деталь А -->
+    <rect class="wheel-part module" x="270" y="60" width="90" height="90" rx="4" pathLength="1" style="animation-delay: .8s"/>
+    <line class="centerline" x1="262" y1="105" x2="368" y2="105"/>
+    <line class="centerline" x1="315" y1="52" x2="315" y2="160"/>
+    <circle class="wheel-part accent-line" cx="326" cy="97" r="26" pathLength="1" style="animation-delay: 1.2s"/>
+    <circle class="late nominal" cx="315" cy="105" r="26"/>
+
+    <!-- Подписи, выноска и смещение -->
+    <g class="dimension-group">
+        <text class="label-text" x="90" y="24" text-anchor="middle">укладка</text>
+        <text class="label-text" x="170" y="24" text-anchor="middle">съём</text>
+        <text class="label-text" x="182" y="100" text-anchor="middle">3</text>
+        <text class="label-text" x="222" y="102" text-anchor="middle">4</text>
+        <text class="muted-text" x="140" y="140" text-anchor="middle">10–11 тележек в обороте</text>
+        <circle class="extension" cx="182" cy="80" r="15" fill="none"/>
+        <text class="dimension-text" x="206" y="64">А</text>
+        <text class="dimension-text" x="315" y="48" text-anchor="middle">А</text>
+        <line class="dimension" x1="315" y1="105" x2="326" y2="97" marker-end="url(#arrow-carts)"/>
+        <text class="dimension-text" x="332" y="118">Δ</text>
+        <text class="muted-text" x="315" y="172" text-anchor="middle">центр заготовки смещён</text>
+        <text class="muted-text" x="315" y="185" text-anchor="middle">относительно ожидаемого</text>
+    </g>
+</svg>
