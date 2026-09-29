@@ -17,6 +17,7 @@ class Project(models.Model):
         choices=[
             ("plc_rack", "Стойка ПЛК"),
             ("pis_charts", "Параметры и графики"),
+            ("screen_recorder", "Запись экрана"),
         ],
     )
     order = models.PositiveIntegerField("Порядок", default=0)

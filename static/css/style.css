@@ -770,3 +770,34 @@ nav a {
         opacity: 1;
     }
 }
+
+.project-drawing .label-text {
+    fill: currentColor;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.project-drawing .rec-dot,
+.project-drawing .rec-text {
+    fill: #c0392b;
+}
+
+.project-drawing .rec-text {
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.project-drawing .rec-dot {
+    animation: blink 1.2s ease-in-out 2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-drawing .rec-dot {
+        animation: none;
+    }
+}

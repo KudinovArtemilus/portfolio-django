@@ -1,0 +1,66 @@
+<svg viewBox="0 45 400 160" role="img" aria-labelledby="rec-title">
+    <title id="rec-title">Схема: непрерывная запись экрана, файлы по часам, папки по дням месяца</title>
+    <defs>
+        <marker id="arrow-rec" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+        </marker>
+    </defs>
+
+    <!-- Монитор -->
+    <rect class="wheel-part module" x="12" y="50" width="176" height="118" rx="4" pathLength="1"/>
+    <rect class="wheel-part wheel-thin" x="22" y="60" width="156" height="98" rx="1" pathLength="1" style="animation-delay: .15s"/>
+    <path class="wheel-part" d="M86 168 L80 192 H120 L114 168" pathLength="1" style="animation-delay: .2s"/>
+    <line class="wheel-part" x1="66" y1="192" x2="134" y2="192" pathLength="1" style="animation-delay: .25s"/>
+
+    <!-- Мнемосхема на экране -->
+    <rect class="wheel-part wheel-thin" x="34" y="84" width="30" height="56" rx="2" pathLength="1" style="animation-delay: .4s"/>
+    <line class="wheel-part wheel-thin accent-line" x1="36" y1="112" x2="62" y2="112" pathLength="1" style="animation-delay: .6s"/>
+    <path class="wheel-part wheel-thin" d="M64 124 H86" pathLength="1" style="animation-delay: .5s"/>
+    <path class="wheel-part wheel-thin" d="M86 118 L96 130 V118 L86 130 Z" pathLength="1" style="animation-delay: .55s"/>
+    <path class="wheel-part wheel-thin" d="M96 124 H108" pathLength="1" style="animation-delay: .6s"/>
+    <path class="wheel-part wheel-thin muted-line" d="M112 146 V88 M112 146 H170" pathLength="1" style="animation-delay: .5s"/>
+    <path class="wheel-part wheel-thin accent-line" d="M114 128 L124 120 L134 126 L144 108 L154 116 L166 102" pathLength="1" style="animation-delay: .7s"/>
+
+    <!-- Индикатор записи -->
+    <g class="late">
+        <circle class="rec-dot" cx="150" cy="70" r="4"/>
+        <text class="rec-text" x="157" y="74">REC</text>
+    </g>
+
+    <!-- Поток записи -->
+    <path class="wheel-part wheel-thin" d="M192 110 H214" pathLength="1" style="animation-delay: .9s"/>
+    <path class="late flow-head" d="M212 105 L222 110 L212 115 z"/>
+
+    <!-- Лента часовых файлов -->
+    <rect class="wheel-part" x="228" y="94" width="160" height="32" rx="2" pathLength="1" style="animation-delay: 1s"/>
+    <line class="wheel-part wheel-thin" x1="248" y1="94" x2="248" y2="126" pathLength="1" style="animation-delay: 1.1s"/>
+    <line class="wheel-part wheel-thin" x1="268" y1="94" x2="268" y2="126" pathLength="1" style="animation-delay: 1.15s"/>
+    <line class="wheel-part wheel-thin" x1="288" y1="94" x2="288" y2="126" pathLength="1" style="animation-delay: 1.2s"/>
+    <line class="wheel-part wheel-thin" x1="308" y1="94" x2="308" y2="126" pathLength="1" style="animation-delay: 1.25s"/>
+    <line class="wheel-part wheel-thin" x1="328" y1="94" x2="328" y2="126" pathLength="1" style="animation-delay: 1.3s"/>
+    <line class="wheel-part wheel-thin" x1="348" y1="94" x2="348" y2="126" pathLength="1" style="animation-delay: 1.35s"/>
+    <line class="wheel-part wheel-thin" x1="368" y1="94" x2="368" y2="126" pathLength="1" style="animation-delay: 1.4s"/>
+    <path class="wheel-part wheel-thin muted-line" d="M235 104 L243 110 L235 116 Z" pathLength="1" style="animation-delay: 1.3s"/>
+    <path class="wheel-part wheel-thin muted-line" d="M255 104 L263 110 L255 116 Z" pathLength="1" style="animation-delay: 1.35s"/>
+
+    <!-- Папки по дням месяца -->
+    <path class="wheel-part module" d="M228 162 H244 L248 158 H262 V190 H228 Z" pathLength="1" style="animation-delay: 1.4s"/>
+    <path class="wheel-part module" d="M272 162 H288 L292 158 H306 V190 H272 Z" pathLength="1" style="animation-delay: 1.5s"/>
+    <path class="wheel-part module" d="M316 162 H332 L336 158 H350 V190 H316 Z" pathLength="1" style="animation-delay: 1.6s"/>
+    <path class="wheel-part module" d="M356 162 H372 L376 158 H390 V190 H356 Z" pathLength="1" style="animation-delay: 1.7s"/>
+
+    <!-- Размер «1 час», подписи папок, связь ленты с папкой -->
+    <g class="dimension-group">
+        <line class="extension" x1="228" y1="90" x2="228" y2="68"/>
+        <line class="extension" x1="248" y1="90" x2="248" y2="68"/>
+        <line class="dimension" x1="228" y1="76" x2="248" y2="76"
+              marker-start="url(#arrow-rec)" marker-end="url(#arrow-rec)"/>
+        <text class="dimension-text" x="256" y="80">1 час</text>
+        <path class="extension" d="M308 126 V144 H245 V156" stroke-dasharray="3 3" fill="none"/>
+        <text class="label-text" x="245" y="182" text-anchor="middle">01</text>
+        <text class="label-text" x="289" y="182" text-anchor="middle">02</text>
+        <text class="label-text" x="333" y="182" text-anchor="middle">…</text>
+        <text class="label-text" x="373" y="182" text-anchor="middle">31</text>
+    </g>
+</svg>
