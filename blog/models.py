@@ -9,6 +9,14 @@ class Post(models.Model):
     slug = models.SlugField("Адрес в URL", unique=True)
     summary = models.CharField("Кратко", max_length=300)
     body = models.TextField("Текст (Markdown)")
+    drawing = models.CharField(
+        "Чертёж",
+        max_length=30,
+        blank=True,
+        choices=[
+            ("data_gaps", "Данные с дырами"),
+        ],
+    )
     is_published = models.BooleanField("Опубликована", default=False)
     published_at = models.DateField("Дата публикации", default=timezone.now)
     created_at = models.DateTimeField("Создана", auto_now_add=True)

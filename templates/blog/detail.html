@@ -10,7 +10,13 @@
 
     <article class="article">
         <time datetime="{{ post.published_at|date:'Y-m-d' }}">{{ post.published_at|date:"j E Y" }}</time>
-        <h1>{{ post.title }}</h1>
+                {% if post.drawing %}
+            <figure class="project-drawing article-drawing">
+                {% with "drawings/"|add:post.drawing|add:".html" as drawing_template %}
+                    {% include drawing_template %}
+                {% endwith %}
+            </figure>
+        {% endif %}
 
         <div class="article-body">
             {{ post.body_html }}

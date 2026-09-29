@@ -1,0 +1,56 @@
+<svg viewBox="0 20 400 170" role="img" aria-labelledby="gaps-title">
+    <title id="gaps-title">Сигнал аварии за смену: измеренные участки и восстановленные по правилам 1 и 2, разрыв связи и активная авария</title>
+    <defs>
+        <marker id="arrow-gaps" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+        </marker>
+        <pattern id="hatch-gaps" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <line class="hatch-line" x1="0" y1="0" x2="0" y2="6"/>
+        </pattern>
+    </defs>
+
+    <!-- Легенда -->
+    <line class="wheel-part" x1="20" y1="36" x2="40" y2="36" pathLength="1"/>
+    <text class="late muted-text" x="46" y="40">измерено</text>
+    <line class="late wheel-restored restored" x1="108" y1="36" x2="128" y2="36"/>
+    <text class="late muted-text" x="134" y="40">восстановлено</text>
+
+    <!-- Ось времени -->
+    <path class="wheel-part" d="M20 165 H388" pathLength="1" style="animation-delay: .1s"/>
+    <line class="wheel-part wheel-thin" x1="20" y1="165" x2="20" y2="170" pathLength="1" style="animation-delay: .3s"/>
+    <line class="wheel-part wheel-thin" x1="80" y1="165" x2="80" y2="170" pathLength="1" style="animation-delay: .3s"/>
+    <line class="wheel-part wheel-thin" x1="388" y1="165" x2="388" y2="170" pathLength="1" style="animation-delay: .3s"/>
+    <text class="late muted-text" x="18" y="183">08:00</text>
+    <text class="late muted-text" x="80" y="183" text-anchor="middle">09:00</text>
+    <text class="late muted-text" x="390" y="183" text-anchor="end">20:00</text>
+
+    <!-- Разрыв связи -->
+    <g class="late">
+        <rect class="gap" x="168" y="60" width="56" height="80"/>
+        <text class="muted-text" x="196" y="54" text-anchor="middle">нет связи</text>
+    </g>
+
+    <!-- Измеренный сигнал -->
+    <path class="wheel-part" d="M60 80 V135 H100 V80 H140 V135 H168" pathLength="1" style="animation-delay: .4s"/>
+    <path class="wheel-part wheel-thin" d="M224 135 H250" pathLength="1" style="animation-delay: .7s"/>
+    <path class="wheel-part" d="M260 80 V135 H320 V80 H370" pathLength="1" style="animation-delay: .8s"/>
+
+    <!-- Восстановленные участки и идущая авария -->
+    <path class="late wheel-restored restored" d="M20 135 V80 H60"/>
+    <path class="late wheel-restored restored" d="M250 135 V80 H260"/>
+    <path class="late wheel-restored accent-solid" d="M370 80 H390" marker-end="url(#arrow-gaps)"/>
+
+    <!-- Подписи и размер «1 мин» -->
+    <g class="dimension-group">
+        <text class="label-text" x="40" y="72" text-anchor="middle">правило 1</text>
+        <text class="label-text" x="120" y="72" text-anchor="middle">записано</text>
+        <text class="label-text" x="255" y="152" text-anchor="middle">правило 2</text>
+        <text class="label-text" x="345" y="72" text-anchor="middle">ACTIVE</text>
+        <line class="extension" x1="250" y1="76" x2="250" y2="50"/>
+        <line class="extension" x1="260" y1="76" x2="260" y2="50"/>
+        <line class="dimension" x1="250" y1="56" x2="260" y2="56"
+              marker-start="url(#arrow-gaps)" marker-end="url(#arrow-gaps)"/>
+        <text class="dimension-text" x="266" y="60">1 мин</text>
+    </g>
+</svg>

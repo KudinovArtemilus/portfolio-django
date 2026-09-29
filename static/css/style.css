@@ -801,3 +801,47 @@ nav a {
         animation: none;
     }
 }
+
+.article-drawing {
+    max-width: 600px;
+    margin: 0 0 2rem;
+}
+
+.project-drawing .wheel-restored {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+}
+
+.project-drawing .restored {
+    stroke: var(--accent);
+    stroke-dasharray: 5 4;
+}
+
+.project-drawing .accent-solid {
+    stroke: var(--accent);
+}
+
+.project-drawing .muted-text {
+    fill: var(--muted);
+    font-size: 10px;
+}
+
+.project-drawing .gap {
+    fill: url(#hatch-gaps);
+    stroke: var(--line);
+    stroke-width: 1;
+}
+
+.project-drawing .hatch-line {
+    stroke: var(--line);
+    stroke-width: 1;
+}
+
+.article-drawing .label-text {
+    font-size: 10px;
+}
+
+.article-drawing .dimension-text {
+    font-size: 11px;
+}
