@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "projects",
     "blog",
     "resume",
+    "goals",
 ]
 
 MIDDLEWARE = [
