@@ -11,7 +11,7 @@
         {% for goal in goals %}
             <article class="goal-card">
                 <div class="goal-head">
-                    <h2 class="goal-title">{{ goal.title }}</h2>
+                    <h2 class="goal-title"><a href="{% url 'goals:detail' goal.slug %}">{{ goal.title }}</a></h2>
                     {% if not goal.is_public %}
                         <span class="goal-badge goal-badge-private">видно только вам</span>
                     {% elif goal.status != "active" %}

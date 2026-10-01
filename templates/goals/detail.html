@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}{{ goal.title }} | Цели | Артем Кудинов{% endblock %}
+{% block description %}{{ goal.get_kind_display }}: {{ goal.title }}{% endblock %}
+{% block og_title %}{{ goal.title }} — Артем Кудинов{% endblock %}
+{% block og_description %}{{ goal.get_kind_display }}, отмечаю прогресс каждый день.{% endblock %}
+
+{% block content %}
+    <a href="{% url 'goals:list' %}" class="back">← Все цели</a>
+
+    <article class="goal-detail">
+        <div class="goal-head">
+            <h1 class="page-title">{{ goal.title }}</h1>
+            {% if not goal.is_public %}
+                <span class="goal-badge goal-badge-private">видно только вам</span>
+            {% endif %}
+        </div>
+        <p class="goal-meta">{{ goal.get_kind_display }} · с {{ goal.start_date|date:"j E Y" }}</p>
+
+        {% if goal.target_amount %}
+            <div class="goal-numbers">
+                <span>{{ done }} из {{ goal.target_amount }} · {{ goal.get_unit_display }}</span>
+                <span class="goal-percent">{% widthratio done goal.target_amount 100 %}%</span>
+            </div>
+            <div class="progress">
+                <div class="progress-fill" style="width: {% widthratio done goal.target_amount 100 %}%"></div>
+            </div>
+        {% else %}
+            <div class="goal-numbers">
+                <span>Всего: {{ done }} · {{ goal.get_unit_display }}</span>
+                {% if goal.daily_target %}<span class="goal-percent">норма {{ goal.daily_target }} в день</span>{% endif %}
+            </div>
+        {% endif %}
+
+        <figure class="snake">
+            <svg viewBox="-2 -2 {{ snake.width|add:4 }} {{ snake.height|add:4 }}" role="img"
+                 aria-label="Змейка по дням: каждая клетка — день, заливка — сколько сделано">
+                <polyline class="snake-body" points="{{ snake.path }}"/>
+                {% for cell in snake.cells %}
+                    <g>
+                        <title>{{ cell.date|date:"j E" }}: {% if cell.amount %}{{ cell.amount }}{% else %}пропуск{% endif %}</title>
+                        <rect class="snake-cell{% if forloop.last %} snake-head{% endif %}"
+                              x="{{ cell.x }}" y="{{ cell.y }}" width="{{ snake.cell }}" height="{{ snake.cell }}" rx="5"/>
+                        {% if cell.level %}
+                            <rect class="snake-fill level-{{ cell.level }}"
+                                  x="{{ cell.x }}" y="{{ cell.y }}" width="{{ snake.cell }}" height="{{ snake.cell }}" rx="5"/>
+                        {% endif %}
+                    </g>
+                {% endfor %}
+            </svg>
+            <figcaption class="snake-legend">
+                <span>меньше</span>
+                <span class="legend-box"></span>
+                <span class="legend-box level-1"></span>
+                <span class="legend-box level-2"></span>
+                <span class="legend-box level-3"></span>
+                <span>больше</span>
+                <span class="legend-note">голова — сегодня</span>
+            </figcaption>
+        </figure>
+
+        {% if entries %}
+            <section class="goal-entries">
+                <h2>Последние отметки</h2>
+                <ul>
+                    {% for entry in entries %}
+                        <li>
+                            <span class="entry-date">{{ entry.date|date:"j E" }}</span>
+                            <span>{{ entry.amount }}</span>
+                            {% if entry.note %}
+                                {% if not entry.note_is_private %}
+                                    <span class="entry-note">{{ entry.note }}</span>
+                                {% elif request.user.is_staff %}
+                                    <span class="entry-note entry-note-private">🔒 {{ entry.note }}</span>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    </article>
+{% endblock %}
