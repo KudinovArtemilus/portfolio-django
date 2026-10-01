@@ -31,7 +31,35 @@
                 {% if goal.daily_target %}<span class="goal-percent">норма {{ goal.daily_target }} в день</span>{% endif %}
             </div>
         {% endif %}
+                <div class="goal-stats">
+            <div class="stat">
+                <p class="stat-label">Серия</p>
+                <p class="stat-value">{{ stats.current_streak }} дн.</p>
+            </div>
+            <div class="stat">
+                <p class="stat-label">Лучшая серия</p>
+                <p class="stat-value">{{ stats.best_streak }} дн.</p>
+            </div>
+            <div class="stat">
+                <p class="stat-label">Темп</p>
+                <p class="stat-value">{{ stats.pace }} в день</p>
+            </div>
+            {% if goal.target_amount and goal.status == "active" %}
+                <div class="stat">
+                    <p class="stat-label">Прогноз</p>
+                    <p class="stat-value">
+                        {% if stats.forecast %}{{ stats.forecast|date:"j E" }}{% else %}мало данных{% endif %}
+                    </p>
+                </div>
+            {% endif %}
+        </div>
 
+        {% if stats.required %}
+            <p class="goal-deadline {% if stats.on_track %}on-track{% else %}behind{% endif %}">
+                Срок — {{ goal.deadline|date:"j E" }}. Нужно {{ stats.required }} в день:
+                {% if stats.on_track %}успеваю{% else %}пока отстаю{% endif %}.
+            </p>
+        {% endif %}
         <figure class="snake">
             <svg viewBox="-2 -2 {{ snake.width|add:4 }} {{ snake.height|add:4 }}" role="img"
                  aria-label="Змейка по дням: каждая клетка — день, заливка — сколько сделано">

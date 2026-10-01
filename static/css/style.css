@@ -1047,3 +1047,41 @@ nav a {
 .entry-note-private {
     color: var(--accent);
 }
+
+.goal-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0 0.75rem;
+}
+
+.stat {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    background: var(--surface);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.stat-value {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.goal-deadline {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.9rem;
+    border-left: 3px solid var(--line);
+}
+
+.goal-deadline.on-track {
+    border-left-color: var(--accent);
+}
+
+.goal-deadline.behind {
+    border-left-color: #c0392b;
+}
