@@ -43,11 +43,13 @@ def build_snake(daily_totals, start, end, daily_target=None, columns=7):
         y = row * STEP
         cells.append(
             {
-                "cells": cells,
-                "path": path,
-                "cell": CELL,
-                "width": columns * STEP - GAP,
-                "height": rows * STEP - GAP,
+                "date": day,
+                "amount": amount,
+                "level": fill_level(amount, daily_target, best_day),
+                "x": x,
+                "y": y,
+                "cx": x + CELL // 2,
+                "cy": y + CELL // 2,
             }
         )
 
@@ -56,6 +58,7 @@ def build_snake(daily_totals, start, end, daily_target=None, columns=7):
     return {
         "cells": cells,
         "path": path,
+        "cell": CELL,
         "width": columns * STEP - GAP,
         "height": rows * STEP - GAP,
     }
