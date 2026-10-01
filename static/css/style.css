@@ -864,3 +864,92 @@ nav a {
     stroke-width: 1;
     stroke-dasharray: 4 3;
 }
+
+
+.page-title {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+}
+
+.page-intro {
+    color: var(--muted);
+    margin-bottom: 2rem;
+}
+
+.goal-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.goal-card {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+    background: var(--surface);
+}
+
+.goal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.goal-title {
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.goal-badge {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.1rem 0.5rem;
+    white-space: nowrap;
+}
+
+.goal-badge-private {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.goal-meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0.25rem 0 1rem;
+}
+
+.goal-numbers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.goal-percent {
+    color: var(--muted);
+}
+
+.progress {
+    height: 6px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    max-width: 100%;
+    background: var(--accent);
+}
+
+.empty-state {
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    padding: 2rem;
+    text-align: center;
+}
