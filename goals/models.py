@@ -17,6 +17,13 @@ class Goal(models.Model):
         ("minutes", "минуты"),
         ("tasks", "задачи"),
     ]
+    UNIT_FORMS = {
+        "pages": ("страница", "страницы", "страниц"),
+        "lessons": ("урок", "урока", "уроков"),
+        "episodes": ("серия", "серии", "серий"),
+        "minutes": ("минута", "минуты", "минут"),
+        "tasks": ("задача", "задачи", "задач"),
+    }
     STATUS_CHOICES = [
         ("active", "В процессе"),
         ("done", "Выполнена"),
@@ -29,6 +36,7 @@ class Goal(models.Model):
     kind = models.CharField("Тип", max_length=20, choices=KIND_CHOICES)
     unit = models.CharField("Единица", max_length=20, choices=UNIT_CHOICES)
     target_amount = models.PositiveIntegerField("Объём", null=True, blank=True)
+    initial_amount = models.PositiveIntegerField("Сделано до начала", default=0)
     daily_target = models.PositiveIntegerField("Норма в день", null=True, blank=True)
     start_date = models.DateField("Дата начала", default=timezone.localdate)
     deadline = models.DateField("Срок", null=True, blank=True)

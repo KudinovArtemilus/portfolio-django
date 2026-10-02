@@ -1,6 +1,7 @@
 from datetime import timedelta
 
-from django.db.models import Sum
+from django.db.models import F, Sum
+from django.db.models.functions import Coalesce
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 
@@ -25,7 +26,9 @@ def visible_goals(request):
 
 
 def goal_list(request):
-    goals = visible_goals(request).annotate(done=Sum("entries__amount"))
+    goals = visible_goals(request).annotate(
+        done=Coalesce(Sum("entries__amount"), 0) + F("initial_amount")
+    )
     return render(request, "goals/list.html", {"goals": goals})
 
 
@@ -39,8 +42,9 @@ def goal_detail(request, slug):
     start = max(goal.start_date, today - timedelta(days=SNAKE_DAYS - 1))
     snake = build_snake(daily_totals, start, today, goal.daily_target)
 
-    done = sum(daily_totals.values())
-    pace = average_pace(done, goal.start_date, today)
+    done_since_start = sum(daily_totals.values())
+    done = goal.initial_amount + done_since_start
+    pace = average_pace(done_since_start, goal.start_date, today)
 
     stats = {
         "current_streak": current_streak(daily_totals, today, goal.daily_target),

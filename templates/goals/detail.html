@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load goals_extras %}
 
 {% block title %}{{ goal.title }} | Цели | Артем Кудинов{% endblock %}
 {% block description %}{{ goal.get_kind_display }}: {{ goal.title }}{% endblock %}
@@ -19,7 +20,7 @@
 
         {% if goal.target_amount %}
             <div class="goal-numbers">
-                <span>{{ done }} из {{ goal.target_amount }} · {{ goal.get_unit_display }}</span>
+                <span>{{ done }} из {{ goal.target_amount }} {{ goal.target_amount|unit_word:goal.unit }}</span>
                 <span class="goal-percent">{% widthratio done goal.target_amount 100 %}%</span>
             </div>
             <div class="progress">
@@ -27,18 +28,21 @@
             </div>
         {% else %}
             <div class="goal-numbers">
-                <span>Всего: {{ done }} · {{ goal.get_unit_display }}</span>
-                {% if goal.daily_target %}<span class="goal-percent">норма {{ goal.daily_target }} в день</span>{% endif %}
+                <span>Всего: {{ done }} {{ done|unit_word:goal.unit }}</span>
+                {% if goal.daily_target %}
+                    <span class="goal-percent">норма {{ goal.daily_target }} {{ goal.daily_target|unit_word:goal.unit }} в день</span>
+                {% endif %}
             </div>
         {% endif %}
-                <div class="goal-stats">
+
+        <div class="goal-stats">
             <div class="stat">
                 <p class="stat-label">Серия</p>
-                <p class="stat-value">{{ stats.current_streak }} дн.</p>
+                <p class="stat-value">{{ stats.current_streak }} {{ stats.current_streak|days_word }}</p>
             </div>
             <div class="stat">
                 <p class="stat-label">Лучшая серия</p>
-                <p class="stat-value">{{ stats.best_streak }} дн.</p>
+                <p class="stat-value">{{ stats.best_streak }} {{ stats.best_streak|days_word }}</p>
             </div>
             <div class="stat">
                 <p class="stat-label">Темп</p>
@@ -56,17 +60,18 @@
 
         {% if stats.required %}
             <p class="goal-deadline {% if stats.on_track %}on-track{% else %}behind{% endif %}">
-                Срок — {{ goal.deadline|date:"j E" }}. Нужно {{ stats.required }} в день:
+                Срок — {{ goal.deadline|date:"j E" }}. Нужно {{ stats.required }} {{ stats.required|unit_word:goal.unit }} в день:
                 {% if stats.on_track %}успеваю{% else %}пока отстаю{% endif %}.
             </p>
         {% endif %}
+
         <figure class="snake">
             <svg viewBox="-2 -2 {{ snake.width|add:4 }} {{ snake.height|add:4 }}" role="img"
                  aria-label="Змейка по дням: каждая клетка — день, заливка — сколько сделано">
                 <polyline class="snake-body" points="{{ snake.path }}"/>
                 {% for cell in snake.cells %}
                     <g>
-                        <title>{{ cell.date|date:"j E" }}: {% if cell.amount %}{{ cell.amount }}{% else %}пропуск{% endif %}</title>
+                        <title>{{ cell.date|date:"j E" }}: {% if cell.amount %}{{ cell.amount }} {{ cell.amount|unit_word:goal.unit }}{% else %}пропуск{% endif %}</title>
                         <rect class="snake-cell{% if forloop.last %} snake-head{% endif %}"
                               x="{{ cell.x }}" y="{{ cell.y }}" width="{{ snake.cell }}" height="{{ snake.cell }}" rx="5"/>
                         {% if cell.level %}
@@ -94,7 +99,7 @@
                     {% for entry in entries %}
                         <li>
                             <span class="entry-date">{{ entry.date|date:"j E" }}</span>
-                            <span>{{ entry.amount }}</span>
+                            <span>{{ entry.amount }} {{ entry.amount|unit_word:goal.unit }}</span>
                             {% if entry.note %}
                                 {% if not entry.note_is_private %}
                                     <span class="entry-note">{{ entry.note }}</span>

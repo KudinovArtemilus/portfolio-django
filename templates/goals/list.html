@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load goals_extras %}
 
 {% block title %}Цели | Артем Кудинов{% endblock %}
 {% block description %}Чему я учусь: книги, курсы и ежедневные привычки.{% endblock %}
@@ -22,7 +23,7 @@
 
                 {% if goal.target_amount %}
                     <div class="goal-numbers">
-                        <span>{{ goal.done|default:0 }} из {{ goal.target_amount }} · {{ goal.get_unit_display }}</span>
+                        <span>{{ goal.done }} из {{ goal.target_amount }} {{ goal.target_amount|unit_word:goal.unit }}</span>
                         <span class="goal-percent">{% widthratio goal.done|default:0 goal.target_amount 100 %}%</span>
                     </div>
                     <div class="progress">
@@ -30,7 +31,7 @@
                     </div>
                 {% else %}
                     <div class="goal-numbers">
-                        <span>Всего: {{ goal.done|default:0 }} · {{ goal.get_unit_display }}</span>
+                        <span>Всего: {{ goal.done }} {{ goal.done|unit_word:goal.unit }}</span>
                         {% if goal.daily_target %}
                             <span class="goal-percent">норма {{ goal.daily_target }} в день</span>
                         {% endif %}

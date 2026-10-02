@@ -66,6 +66,20 @@ def average_pace(done, start, today):
     return done / days
 
 
+def ru_plural(number, forms):
+    one, few, many = forms
+    number = abs(int(number))
+    last_two = number % 100
+    last = number % 10
+    if 11 <= last_two <= 14:
+        return many
+    if last == 1:
+        return one
+    if 2 <= last <= 4:
+        return few
+    return many
+
+
 if __name__ == "__main__":
     today = date(2026, 10, 10)
     start = date(2026, 10, 1)
