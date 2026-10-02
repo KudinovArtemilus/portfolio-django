@@ -33,7 +33,7 @@
                     <div class="goal-numbers">
                         <span>Всего: {{ goal.done }} {{ goal.done|unit_word:goal.unit }}</span>
                         {% if goal.daily_target %}
-                            <span class="goal-percent">норма {{ goal.daily_target }} в день</span>
+                            <span class="goal-percent">норма {{ goal.daily_target }} {{ goal.daily_target|unit_word:goal.unit }} в день</span>
                         {% endif %}
                     </div>
                 {% endif %}
