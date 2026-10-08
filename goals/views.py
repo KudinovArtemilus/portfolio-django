@@ -41,16 +41,7 @@ def goal_detail(request, slug):
 
     rows = goal.entries.values("date").annotate(total=Sum("amount"))
     daily_totals = {row["date"]: row["total"] for row in rows}
-
     today = timezone.localdate()
-    start = max(goal.start_date, today - timedelta(days=SNAKE_DAYS - 1))
-    until = None
-    if goal.status == "active":
-        if goal.deadline:
-            until = min(goal.deadline, today + timedelta(days=SNAKE_DAYS))
-        else:
-            until = start + timedelta(days=SNAKE_DAYS - 1)
-    snake = build_snake(daily_totals, start, today, goal.daily_target, until=until)
 
     done_since_start = sum(daily_totals.values())
     done = goal.initial_amount + done_since_start
@@ -72,27 +63,23 @@ def goal_detail(request, slug):
                 stats["forecast"] is not None and stats["forecast"] <= goal.deadline
             )
 
+    start = max(goal.start_date, today - timedelta(days=SNAKE_DAYS - 1))
+    limit = today + timedelta(days=SNAKE_DAYS)
+    until = None
+    if goal.status == "active":
+        if goal.deadline:
+            until = min(goal.deadline, limit)
+        elif stats.get("forecast"):
+            until = min(stats["forecast"], limit)
+        else:
+            until = start + timedelta(days=SNAKE_DAYS - 1)
+    snake = build_snake(daily_totals, start, today, goal.daily_target, until=until)
+
     context = {
         "goal": goal,
         "snake": snake,
         "done": done,
         "stats": stats,
-        "entries": goal.entries.all()[:10],
-    }
-    return render(request, "goals/detail.html", context)
-    goal = get_object_or_404(visible_goals(request), slug=slug)
-
-    rows = goal.entries.values("date").annotate(total=Sum("amount"))
-    daily_totals = {row["date"]: row["total"] for row in rows}
-
-    end = timezone.localdate()
-    start = max(goal.start_date, end - timedelta(days=SNAKE_DAYS - 1))
-    snake = build_snake(daily_totals, start, end, goal.daily_target)
-
-    context = {
-        "goal": goal,
-        "snake": snake,
-        "done": sum(daily_totals.values()),
         "entries": goal.entries.all()[:10],
     }
     return render(request, "goals/detail.html", context)
