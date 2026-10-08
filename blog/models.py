@@ -16,6 +16,7 @@ class Post(models.Model):
         choices=[
             ("data_gaps", "Данные с дырами"),
             ("carts_loop", "Тележки по кругу"),
+            ("hydraulics", "Гидравлика и энкодер"),
         ],
     )
     is_published = models.BooleanField("Опубликована", default=False)
