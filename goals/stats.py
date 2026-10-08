@@ -38,11 +38,6 @@ def best_streak(daily_totals, daily_target=None):
     return best
 
 
-def average_pace(done, start, today):
-    days = (today - start).days + 1
-    return done / days
-
-
 def forecast_date(done, target, pace, today):
     remaining = target - done
     if remaining <= 0:
