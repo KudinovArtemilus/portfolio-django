@@ -3,6 +3,8 @@
 
 {% block title %}Цели | Артем Кудинов{% endblock %}
 {% block description %}Чему я учусь: книги, курсы и ежедневные привычки.{% endblock %}
+{% block og_title %}Цели — Артем Кудинов{% endblock %}
+{% block og_description %}Чему я учусь: книги, курсы и ежедневные привычки.{% endblock %}
 
 {% block content %}
     <h1 class="page-title">Цели</h1>
@@ -24,10 +26,10 @@
                 {% if goal.target_amount %}
                     <div class="goal-numbers">
                         <span>{{ goal.done }} из {{ goal.target_amount }} {{ goal.target_amount|unit_word:goal.unit }}</span>
-                        <span class="goal-percent">{% widthratio goal.done|default:0 goal.target_amount 100 %}%</span>
+                        <span class="goal-percent">{% widthratio goal.done goal.target_amount 100 %}%</span>
                     </div>
                     <div class="progress">
-                        <div class="progress-fill" style="width: {% widthratio goal.done|default:0 goal.target_amount 100 %}%"></div>
+                        <div class="progress-fill" style="width: {% widthratio goal.done goal.target_amount 100 %}%"></div>
                     </div>
                 {% else %}
                     <div class="goal-numbers">
@@ -42,4 +44,21 @@
             <p class="empty-state">Здесь появятся книги, курсы и привычки, над которыми я работаю.</p>
         {% endfor %}
     </div>
+
+    {% if finished %}
+        <section class="finished">
+            <h2>Прочитано и пройдено</h2>
+            <ul class="finished-list">
+                {% for goal in finished %}
+                    <li>
+                        <a href="{% url 'goals:detail' goal.slug %}">{{ goal.title }}</a>
+                        {% if not goal.is_public %}<span class="goal-badge goal-badge-private">видно только вам</span>{% endif %}
+                        <span class="finished-meta">
+                            {{ goal.get_kind_display }}{% if goal.target_amount %} · {{ goal.target_amount }} {{ goal.target_amount|unit_word:goal.unit }}{% endif %}{% if goal.finished_at %} · {{ goal.finished_at|date:"j E Y" }}, за {{ goal.duration_days }} {{ goal.duration_days|days_word }}{% endif %}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
 {% endblock %}

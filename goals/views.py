@@ -29,7 +29,11 @@ def goal_list(request):
     goals = visible_goals(request).annotate(
         done=Coalesce(Sum("entries__amount"), 0) + F("initial_amount")
     )
-    return render(request, "goals/list.html", {"goals": goals})
+    context = {
+        "goals": goals.exclude(status="done"),
+        "finished": goals.filter(status="done").order_by("-finished_at"),
+    }
+    return render(request, "goals/list.html", context)
 
 
 def goal_detail(request, slug):
@@ -40,7 +44,13 @@ def goal_detail(request, slug):
 
     today = timezone.localdate()
     start = max(goal.start_date, today - timedelta(days=SNAKE_DAYS - 1))
-    snake = build_snake(daily_totals, start, today, goal.daily_target)
+    until = None
+    if goal.status == "active":
+        if goal.deadline:
+            until = min(goal.deadline, today + timedelta(days=SNAKE_DAYS))
+        else:
+            until = start + timedelta(days=SNAKE_DAYS - 1)
+    snake = build_snake(daily_totals, start, today, goal.daily_target, until=until)
 
     done_since_start = sum(daily_totals.values())
     done = goal.initial_amount + done_since_start

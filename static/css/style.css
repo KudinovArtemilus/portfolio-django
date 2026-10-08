@@ -1085,3 +1085,39 @@ nav a {
 .goal-deadline.behind {
     border-left-color: #c0392b;
 }
+
+.snake-body-future {
+    stroke-dasharray: 3 4;
+}
+
+.snake-future {
+    fill: none;
+    stroke: var(--line);
+    stroke-dasharray: 3 3;
+}
+
+.finished {
+    border-top: 1px solid var(--line);
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+}
+
+.finished h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.finished-list {
+    list-style: none;
+}
+
+.finished-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.finished-meta {
+    display: block;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
