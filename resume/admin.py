@@ -11,7 +11,8 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Experience)
 class ExperienceAdmin(admin.ModelAdmin):
-    list_display = ["position", "company", "start", "end"]
+    list_display = ["position", "company", "start", "end", "area"]
+    list_editable = ["area"]
 
 
 @admin.register(SkillGroup)

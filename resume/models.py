@@ -11,7 +11,7 @@ def months_between(start, end):
 
 
 def format_duration(months):
-    """42 → '3 года 6 мес.'"""
+    """42 -> '3 года 6 мес.'"""
     years, rest = divmod(months, 12)
     parts = []
     if years:
@@ -27,14 +27,15 @@ class Experience(models.Model):
     start = models.DateField("Начало")
     end = models.DateField("Окончание", null=True, blank=True)
     description = models.TextField("Что делал", blank=True)
-    in_automation = models.BooleanField("Считать в стаже автоматизации", default=False)
 
-    def months(self):
-        end = self.end or date.today()
-        return months_between(self.start, end)
-
-    def duration(self):
-        return format_duration(self.months())
+    AREA_CHOICES = [
+        ("automation", "Автоматизация"),
+        ("it", "IT"),
+        ("other", "Другое"),
+    ]
+    area = models.CharField(
+        "Сфера", max_length=20, choices=AREA_CHOICES, default="other"
+    )
 
     class Meta:
         ordering = ["-start"]
@@ -43,6 +44,13 @@ class Experience(models.Model):
 
     def __str__(self):
         return f"{self.position} — {self.company}"
+
+    def months(self):
+        end = self.end or date.today()
+        return months_between(self.start, end)
+
+    def duration(self):
+        return format_duration(self.months())
 
 
 class SkillGroup(models.Model):
