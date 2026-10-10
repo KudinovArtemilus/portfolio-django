@@ -78,6 +78,11 @@ class Profile(models.Model):
     telegram = models.CharField("Telegram (без @)", max_length=100, blank=True)
     github = models.CharField("GitHub (логин)", max_length=100, blank=True)
     about = models.TextField("О себе")
+    availability = models.CharField(
+        "Что ищу (пусто — скрыть)",
+        max_length=200,
+        blank=True,
+    )
 
     class Meta:
         verbose_name = "Профиль"
