@@ -75,37 +75,6 @@ def build_snake(daily_totals, start, end, daily_target=None, columns=7, until=No
         "width": columns * STEP - GAP,
         "height": rows * STEP - GAP,
     }
-    days_count = (end - start).days + 1
-    best_day = max(daily_totals.values(), default=1)
-    positions = snake_positions(days_count, columns)
-
-    cells = []
-    for index, (row, col) in enumerate(positions):
-        day = start + timedelta(days=index)
-        amount = daily_totals.get(day, 0)
-        x = col * STEP
-        y = row * STEP
-        cells.append(
-            {
-                "date": day,
-                "amount": amount,
-                "level": fill_level(amount, daily_target, best_day),
-                "x": x,
-                "y": y,
-                "cx": x + CELL // 2,
-                "cy": y + CELL // 2,
-            }
-        )
-
-    rows = (days_count + columns - 1) // columns
-    path = " ".join(f"{cell['cx']},{cell['cy']}" for cell in cells)
-    return {
-        "cells": cells,
-        "path": path,
-        "cell": CELL,
-        "width": columns * STEP - GAP,
-        "height": rows * STEP - GAP,
-    }
 
 
 if __name__ == "__main__":
@@ -120,17 +89,11 @@ if __name__ == "__main__":
         date(2026, 10, 1): 30,
     }
 
-    snake = build_snake(totals, start, end, daily_target=30, columns=5)
+    snake = build_snake(
+        totals, start, end, daily_target=30, columns=5, until=date(2026, 10, 5)
+    )
 
     for cell in snake["cells"]:
-        print(
-            cell["date"],
-            cell["amount"],
-            "уровень",
-            cell["level"],
-            "x",
-            cell["x"],
-            "y",
-            cell["y"],
-        )
+        mark = "будущее" if cell["is_future"] else ""
+        print(cell["date"], cell["amount"], "уровень", cell["level"], mark)
     print("размер рисунка:", snake["width"], "x", snake["height"])
