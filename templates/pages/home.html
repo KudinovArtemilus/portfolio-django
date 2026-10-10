@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Артем Кудинов — инженер-разработчик{% endblock %}
+{% block title %}Артем Кудинов — инженер АСУ ТП и разработчик{% endblock %}
 
 {% block content %}
     <section class="hero">
         <div class="hero-text">
             <h1 class="hero-name">Артем Кудинов</h1>
-            <p class="hero-role">Инженер-разработчик промышленных систем</p>
+                        <p class="hero-role">{% if profile %}{{ profile.role }}{% else %}Инженер АСУ ТП и разработчик промышленной аналитики{% endif %}</p>
 
             <p class="hero-intro">
                 Соединяю производство и программирование. Превращаю данные
