@@ -1,4 +1,24 @@
+from datetime import date
+
 from django.db import models
+
+from goals.stats import ru_plural
+
+
+def months_between(start, end):
+    """Сколько полных месяцев между двумя датами."""
+    return (end.year - start.year) * 12 + (end.month - start.month)
+
+
+def format_duration(months):
+    """42 → '3 года 6 мес.'"""
+    years, rest = divmod(months, 12)
+    parts = []
+    if years:
+        parts.append(f"{years} {ru_plural(years, ('год', 'года', 'лет'))}")
+    if rest:
+        parts.append(f"{rest} мес.")
+    return " ".join(parts) or "меньше месяца"
 
 
 class Experience(models.Model):
@@ -7,6 +27,14 @@ class Experience(models.Model):
     start = models.DateField("Начало")
     end = models.DateField("Окончание", null=True, blank=True)
     description = models.TextField("Что делал", blank=True)
+    in_automation = models.BooleanField("Считать в стаже автоматизации", default=False)
+
+    def months(self):
+        end = self.end or date.today()
+        return months_between(self.start, end)
+
+    def duration(self):
+        return format_duration(self.months())
 
     class Meta:
         ordering = ["-start"]

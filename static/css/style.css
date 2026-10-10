@@ -1128,3 +1128,8 @@ nav a {
     stroke: var(--line);
     stroke-dasharray: 3 3;
 }
+
+.job-duration {
+    color: var(--muted);
+    font-size: 0.85em;
+}

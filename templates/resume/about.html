@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}Обо мне | Артем Кудинов{% endblock %}
-{% block description %}{{ profile.role }}{% endblock %}
+{% block description %}{{ role_text }}{% endblock %}
 {% block og_title %}{{ profile.full_name }} — обо мне{% endblock %}
-{% block og_description %}{{ profile.role }}{% endblock %}
+{% block og_description %}{{ role_text }}{% endblock %}
 
 {% block content %}
     <article class="resume">
         {% if profile %}
             <header class="resume-header">
                 <h1>{{ profile.full_name }}</h1>
-                <p class="resume-role">{{ profile.role }}</p>
+                <p class="resume-role">{{ role_text }}</p>
                 <p class="resume-meta">
                     {% if profile.location %}{{ profile.location }}{% endif %}
                     {% if profile.email %} · <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>{% endif %}
@@ -22,7 +22,7 @@
 
             <section class="resume-section">
                 <h2>О себе</h2>
-                {{ profile.about|linebreaks }}
+                {{ about_text|linebreaks }}
             </section>
         {% endif %}
 
@@ -33,6 +33,7 @@
                     <p class="job-dates">
                         {{ job.start|date:"F Y" }} —
                         {% if job.end %}{{ job.end|date:"F Y" }}{% else %}по настоящее время{% endif %}
+                        <br><span class="job-duration">{{ job.duration }}</span>
                     </p>
                     <div>
                         <h3>{{ job.position }}</h3>
