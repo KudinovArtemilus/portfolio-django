@@ -6,12 +6,16 @@
     <section class="hero">
         <div class="hero-text">
             <h1 class="hero-name">Артем Кудинов</h1>
-                        <p class="hero-role">{% if profile %}{{ profile.role }}{% else %}Инженер АСУ ТП и разработчик промышленной аналитики{% endif %}</p>
-                            {% if profile.availability %}
+            <p class="hero-role">{% if profile %}{{ profile.role }}{% else %}Инженер АСУ ТП и разработчик промышленной аналитики{% endif %}</p>
+
+            {% if profile.availability %}
                 <p class="hero-status">
                     <span class="status-dot" aria-hidden="true"></span>
                     {{ profile.availability }}
                 </p>
+            {% endif %}
+
+            <p class="hero-intro">
             {% endif %}
             <p class="hero-intro">
                 Соединяю производство и программирование. Превращаю данные

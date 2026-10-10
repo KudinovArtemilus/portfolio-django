@@ -1136,14 +1136,16 @@ nav a {
 
 .hero-status {
     display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: -0.75rem 0 1.5rem;
-    padding: 0.35rem 0.85rem;
+    align-items: baseline;
+    gap: 0.55rem;
+    max-width: 36em;
+    margin: 0 0 1.75rem;
+    padding: 0.45rem 0.9rem;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 0.6rem;
     background: var(--surface);
     font-size: 0.95rem;
+    line-height: 1.45;
 }
 
 .status-dot {
@@ -1152,4 +1154,5 @@ nav a {
     border-radius: 50%;
     background: var(--accent);
     flex-shrink: 0;
+    transform: translateY(-0.05em);
 }
