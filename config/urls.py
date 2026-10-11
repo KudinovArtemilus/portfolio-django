@@ -28,4 +28,5 @@ urlpatterns = [
     path("", home, name="home"),
     path("goals/", include("goals.urls")),
     path("about/", about, name="about"),
+    path("demo/", include("demo.urls")),
 ]
