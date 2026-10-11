@@ -1,0 +1,84 @@
+<div id="live" class="live"
+     hx-get="{% url 'demo:live' %}"
+     hx-trigger="every 3s [document.visibilityState === 'visible']"
+     hx-swap="outerHTML">
+
+    <div class="live-status">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>Онлайн · {{ clock }}</span>
+        {% if alarms %}
+            <span class="live-alarms">Тревог: {{ alarms }}</span>
+        {% else %}
+            <span class="live-ok">Всё в норме</span>
+        {% endif %}
+    </div>
+
+    <div class="cycle" aria-label="Сценарий поломок на 10 минут">
+        <div class="cycle-bar">
+            {% for seg in timeline.segments %}
+                <span class="cycle-seg{% if seg.active %} is-active{% endif %}"
+                      style="left: {{ seg.left|floatformat:'2u' }}%; width: {{ seg.width|floatformat:'2u' }}%"
+                      title="{{ seg.sensor.fault_name }}"></span>
+            {% endfor %}
+            <span class="cycle-now" style="left: {{ timeline.marker|floatformat:'2u' }}%"></span>
+        </div>
+        <p class="cycle-text">
+            Сценарий на 10 минут.
+            Следующая поломка — <b>{{ timeline.next_name|lower }}</b> через {{ timeline.next_in }}.
+        </p>
+    </div>
+
+    <div class="sensor-grid">
+        {% for state in sensors %}
+            <section id="card-{{ state.sensor.key }}" class="sensor-card{% if state.problem %} alarm{% endif %}">
+                <div class="sensor-head">
+                    <span class="sensor-num">{{ forloop.counter }}</span>
+                    <h3>{{ state.sensor.name }}</h3>
+                </div>
+
+                <p class="sensor-value">
+                    {{ state.value|floatformat:"-2" }}<span class="sensor-unit">{{ state.sensor.unit }}</span>
+                </p>
+
+                {% if state.problem %}
+                    <p class="sensor-status is-alarm">{{ state.problem.0 }}: {{ state.problem.1 }}</p>
+                {% else %}
+                    <p class="sensor-status">Норма: {{ state.lower|floatformat:"-2" }}…{{ state.upper|floatformat:"-2" }} {{ state.sensor.unit }}</p>
+                {% endif %}
+
+                <svg class="sensor-chart" viewBox="0 0 {{ state.chart.width }} {{ state.chart.height }}"
+                     preserveAspectRatio="none" aria-hidden="true">
+                    <rect class="chart-band" x="0" y="{{ state.chart.band_y|floatformat:'1u' }}"
+                          width="{{ state.chart.width }}" height="{{ state.chart.band_h|floatformat:'1u' }}"/>
+                    <polyline class="chart-line" points="{{ state.chart.line }}"/>
+                    {% for p in state.chart.outside %}
+                        <circle class="chart-out" cx="{{ p.x|floatformat:'1u' }}" cy="{{ p.y|floatformat:'1u' }}" r="2.2"/>
+                    {% endfor %}
+                    <circle class="chart-last" cx="{{ state.chart.last_x|floatformat:'1u' }}" cy="{{ state.chart.last_y|floatformat:'1u' }}" r="3"/>
+                </svg>
+                <p class="chart-axis"><span>−10 мин</span><span>сейчас</span></p>
+
+                {% if state.problem %}
+                    <p class="sensor-meaning">{{ state.sensor.meaning }}</p>
+                {% endif %}
+            </section>
+        {% endfor %}
+    </div>
+
+    <section class="event-log">
+        <h3>Журнал событий</h3>
+        {% if events %}
+            <ul>
+                {% for event in events %}
+                    <li class="{% if event.alarm %}is-alarm{% else %}is-ok{% endif %}">
+                        <time>{{ event.time }}</time>
+                        <span class="event-sensor">{{ event.sensor.name }}</span>
+                        <span class="event-text"><b>{{ event.title }}</b> — {{ event.details }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="event-empty">За последние 10 минут событий не было.</p>
+        {% endif %}
+    </section>
+</div>

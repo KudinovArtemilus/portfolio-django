@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Живое демо: мониторинг гидростанции | Артем Кудинов{% endblock %}
+{% block description %}Симуляция гидростанции манипулятора: система в реальном времени сама находит скачки, залипание датчиков и износ насоса.{% endblock %}
+{% block og_title %}Живое демо: мониторинг гидростанции{% endblock %}
+{% block og_description %}Данные выдуманные, алгоритмы настоящие: скачки, залипание датчиков и износ насоса находятся сами.{% endblock %}
+
+{% block content %}
+<article class="demo">
+    <div class="demo-head">
+        <p class="demo-kicker">Живое демо · симуляция</p>
+        <h1>Мониторинг гидростанции манипулятора</h1>
+        <p class="demo-lead">
+            Здесь работает выдуманная гидростанция с четырьмя датчиками. Данные ненастоящие,
+            а алгоритмы — те же, что я применяю к сигналам с реального оборудования.
+            Каждые 10&nbsp;минут по сценарию что-то ломается. Подождите немного:
+            система заметит это сама и объяснит, что случилось.
+        </p>
+    </div>
+
+    <section class="plant" aria-label="Схема гидростанции">
+        <div class="plant-scroll">
+        <svg viewBox="10 44 712 256" role="img" aria-labelledby="plant-title">
+            <title id="plant-title">Схема: бак, насос с двигателем, манометр, клапан и цилиндр оси</title>
+
+            <!-- Трубы: основная линия и обратная -->
+            <path class="pipe" d="M110 200 V150 H220"/>
+            <path class="pipe" d="M280 150 H420"/>
+            <path class="pipe" d="M470 150 H500"/>
+            <path class="pipe" d="M340 150 V108"/>
+            <path class="pipe pipe-return" d="M445 175 V255 H190"/>
+
+            <!-- Поток масла -->
+            <path class="flow" d="M110 200 V150 H220"/>
+            <path class="flow" d="M280 150 H420"/>
+            <path class="flow" d="M470 150 H500"/>
+            <path class="flow flow-return" d="M445 175 V255 H190"/>
+
+            <!-- Бак -->
+            <g class="tank">
+                <rect class="part" x="30" y="200" width="160" height="90" rx="4"/>
+                <rect class="oil" x="34" y="228" width="152" height="58" rx="2"/>
+                <text class="part-label" x="110" y="270" text-anchor="middle">Бак с маслом</text>
+            </g>
+
+            <!-- Термометр в баке -->
+            <g class="thermo">
+                <rect class="part thermo-body" x="160" y="182" width="12" height="62" rx="6"/>
+                <circle class="thermo-bulb" cx="166" cy="248" r="9"/>
+                <rect class="thermo-fill" x="163" y="205" width="6" height="40" rx="3"/>
+                <text class="thermo-question" x="166" y="176" text-anchor="middle">?</text>
+            </g>
+
+            <!-- Двигатель и насос -->
+            <g class="pump-group">
+                <rect class="part" x="222" y="58" width="56" height="44" rx="4"/>
+                <text class="part-letter" x="250" y="87" text-anchor="middle">M</text>
+                <line class="part" x1="250" y1="102" x2="250" y2="120"/>
+                <circle class="part pump-body" cx="250" cy="150" r="30"/>
+                <g class="impeller">
+                    <path d="M250 150 C258 140 262 132 260 124"/>
+                    <path d="M250 150 C260 158 268 162 276 160"/>
+                    <path d="M250 150 C242 160 238 168 240 176"/>
+                    <path d="M250 150 C240 142 232 138 224 140"/>
+                </g>
+                <text class="part-label" x="250" y="200" text-anchor="middle">Насос</text>
+            </g>
+
+            <!-- Манометр -->
+            <g class="gauge">
+                <circle class="part gauge-face" cx="340" cy="84" r="24"/>
+                <path class="gauge-scale" d="M322 96 A22 22 0 1 1 358 96"/>
+                <line class="gauge-needle" x1="340" y1="84" x2="340" y2="66"/>
+                <circle class="gauge-hub" cx="340" cy="84" r="3"/>
+            </g>
+
+            <!-- Клапан -->
+            <g>
+                <rect class="part" x="420" y="125" width="50" height="50" rx="3"/>
+                <path class="part" d="M430 165 L460 135 M452 135 H460 V143"/>
+                <text class="part-label" x="445" y="198" text-anchor="middle">Клапан</text>
+            </g>
+
+            <!-- Цилиндр, поршень и шток оси -->
+            <g>
+                <rect class="part" x="500" y="122" width="110" height="56" rx="3"/>
+                <g class="piston">
+                    <rect class="piston-head" x="506" y="126" width="10" height="48"/>
+                    <rect class="rod" x="516" y="144" width="104" height="12"/>
+                    <rect class="part load" x="620" y="128" width="26" height="44" rx="3"/>
+                </g>
+                <rect class="cylinder-cap" x="606" y="140" width="8" height="20"/>
+                <text class="part-label" x="555" y="200" text-anchor="middle">Цилиндр оси Z</text>
+            </g>
+
+            <!-- Номера датчиков: совпадают с карточками ниже -->
+            <g class="marker marker-oil"><circle cx="196" cy="182" r="11"/><text x="196" y="186">4</text></g>
+            <g class="marker marker-current"><circle cx="296" cy="64" r="11"/><text x="296" y="68">2</text></g>
+            <g class="marker marker-pressure"><circle cx="378" cy="70" r="11"/><text x="378" y="74">1</text></g>
+            <g class="marker marker-axis"><circle cx="555" cy="104" r="11"/><text x="555" y="108">3</text></g>
+        </svg>
+        </div>
+        <p class="plant-hint">Схему можно листать вбок →</p>
+
+        <ol class="plant-legend">
+            <li>Двигатель (M) крутит насос, насос забирает масло из бака.</li>
+            <li>Масло под давлением идёт к клапану, манометр показывает давление.</li>
+            <li>Клапан направляет масло в цилиндр — шток двигает ось манипулятора.</li>
+            <li>Отработанное масло по обратной линии возвращается в бак.</li>
+        </ol>
+    </section>
+
+    {% include "demo/_live.html" %}
+
+    <section class="demo-how">
+        <h2>Как система понимает, что что-то не так</h2>
+        <div class="how-grid">
+            <div class="how-item">
+                <h3>1. Сначала эталон</h3>
+                <p>Система берёт час заведомо исправной работы и запоминает среднее и разброс (σ) каждого датчика. Это коридор нормы — серая полоса на графиках. Сравнивать с последними минутами нельзя: медленный износ сам станет «нормой».</p>
+            </div>
+            <div class="how-item">
+                <h3>2. Три правила</h3>
+                <p><b>Залипание</b> — значение не меняется 30&nbsp;секунд: живой датчик всегда шумит. <b>Скачок</b> — прыжок в 6 раз больше обычного шага. <b>Вне нормы</b> — показания вышли за среднее&nbsp;±&nbsp;3σ.</p>
+            </div>
+            <div class="how-item">
+                <h3>3. Без ложных тревог</h3>
+                <p>Одна точка за 3σ при обычном шуме бывает примерно раз из 370 — это не авария. Тревога включается, только когда за коридором три точки подряд. На 200 минутах проверки — ни одной ложной тревоги.</p>
+            </div>
+        </div>
+        <p class="demo-links">
+            Подробнее о подходе: <a href="/blog/hydraulics-monitoring-few-sensors/">мониторинг гидравлики, когда датчиков почти нет</a>
+            и <a href="/blog/nadezhnost-dannye-s-dyrami/">надёжность, когда данные приходят с дырами</a>.
+            Код демо открыт на <a href="https://github.com/KudinovArtemilus/portfolio-django/tree/main/demo" target="_blank" rel="noopener">GitHub</a>.
+        </p>
+    </section>
+</article>
+{% endblock %}
