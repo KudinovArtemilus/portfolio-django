@@ -18,6 +18,7 @@ class Project(models.Model):
             ("plc_rack", "Стойка ПЛК"),
             ("pis_charts", "Параметры и графики"),
             ("screen_recorder", "Запись экрана"),
+            ("oil_tray", "Трей и график температуры"),
         ],
     )
     order = models.PositiveIntegerField("Порядок", default=0)

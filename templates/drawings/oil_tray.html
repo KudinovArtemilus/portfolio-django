@@ -1,0 +1,52 @@
+<svg viewBox="0 0 400 270" role="img" aria-labelledby="tray-title">
+    <title id="tray-title">Схема: температура в трее, по клику — график за час с порогом превышения</title>
+    <defs>
+        <marker id="arrow-tray" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" class="arrow-head"/>
+        </marker>
+    </defs>
+
+    <!-- Окно графика -->
+    <rect class="wheel-part module" x="16" y="18" width="258" height="190" rx="4" pathLength="1"/>
+    <line class="wheel-part wheel-thin" x1="16" y1="36" x2="274" y2="36" pathLength="1" style="animation-delay: .15s"/>
+    <path class="wheel-part wheel-thin" d="M258 23 L266 31 M266 23 L258 31" pathLength="1" style="animation-delay: .2s"/>
+
+    <!-- Оси -->
+    <path class="wheel-part" d="M36 50 V176 H258" pathLength="1" style="animation-delay: .3s"/>
+    <line class="wheel-part wheel-thin" x1="32" y1="90" x2="36" y2="90" pathLength="1" style="animation-delay: .5s"/>
+    <line class="wheel-part wheel-thin" x1="32" y1="130" x2="36" y2="130" pathLength="1" style="animation-delay: .5s"/>
+
+    <!-- Порог (критическая температура) -->
+    <line class="centerline" x1="36" y1="78" x2="258" y2="78"/>
+    <text class="dimension-text" x="254" y="72" text-anchor="end">порог</text>
+
+    <!-- Температура растёт и переходит порог -->
+    <path class="wheel-part accent-line"
+          d="M40 154 L56 150 L72 156 L88 144 L104 148 L120 136 L136 140 L152 126 L168 122 L184 110 L200 104 L216 92 L232 80 L246 70 L256 66"
+          pathLength="1" style="animation-delay: .8s"/>
+
+    <!-- Размер «1 час» -->
+    <g class="dimension-group">
+        <line class="extension" x1="36" y1="180" x2="36" y2="198"/>
+        <line class="extension" x1="258" y1="180" x2="258" y2="198"/>
+        <line class="dimension" x1="36" y1="192" x2="258" y2="192"
+              marker-start="url(#arrow-tray)" marker-end="url(#arrow-tray)"/>
+        <text class="dimension-text" x="147" y="188" text-anchor="middle">1 час</text>
+    </g>
+
+    <!-- Панель задач -->
+    <rect class="wheel-part module" x="10" y="232" width="380" height="28" rx="2" pathLength="1" style="animation-delay: .2s"/>
+    <rect class="wheel-part wheel-thin" x="20" y="238" width="16" height="16" rx="2" pathLength="1" style="animation-delay: .35s"/>
+    <rect class="wheel-part wheel-thin muted-line" x="244" y="240" width="12" height="12" rx="2" pathLength="1" style="animation-delay: .4s"/>
+    <rect class="wheel-part wheel-thin muted-line" x="262" y="240" width="12" height="12" rx="2" pathLength="1" style="animation-delay: .45s"/>
+
+    <!-- Значок программы: температура числом -->
+    <rect class="wheel-part accent-line" x="282" y="237" width="28" height="18" rx="2" pathLength="1" style="animation-delay: .6s"/>
+    <text class="dimension-text late" x="296" y="250" text-anchor="middle">58</text>
+    <text class="dimension-text" x="380" y="250" text-anchor="end">15:20</text>
+
+    <!-- Клик по значку открывает окно графика -->
+    <path class="wheel-part wheel-thin" d="M296 232 V206 Q296 196 288 196 H284" pathLength="1" style="animation-delay: 1.2s"/>
+    <path class="late flow-head" d="M286 191 L276 196 L286 201 z"/>
+</svg>
