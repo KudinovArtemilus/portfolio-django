@@ -1729,21 +1729,23 @@ nav a {
 }
 
 
-/* Рисунок на главной: ПЛК → код → тренд */
+/* Рисунок на главной: ПЛК → сервер → ПК */
+.hero-drawing {
+    --alarm: #b8432f;
+}
+
 .hero-label {
     fill: var(--muted);
     font-size: 13px;
 }
 
-.hero-code {
-    fill: var(--accent);
-    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    font-size: 30px;
-    font-weight: 700;
-}
-
 .hero-led {
     fill: var(--accent);
+}
+
+.hero-slot {
+    stroke: var(--line);
+    stroke-width: 2;
 }
 
 .hero-band {
@@ -1761,22 +1763,95 @@ nav a {
     animation: hero-flow 1.2s linear infinite;
 }
 
-.hero-out {
+/* Тренд рисуется заново каждые 7 секунд */
+.hero-trend {
+    fill: none;
     stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: hero-trend 7s linear infinite;
+}
+
+.hero-trend-out {
+    stroke: var(--alarm);
+    stroke-width: 2.5;
+    animation-name: hero-trend-out;
+}
+
+.hero-callout {
+    opacity: 0;
+    animation: hero-callout 7s ease-out infinite;
 }
 
 .hero-alarm {
     fill: none;
-    stroke: var(--accent);
+    stroke: var(--alarm);
     stroke-width: 2;
+}
+
+.hero-alarm-line {
+    fill: none;
+    stroke: var(--alarm);
+    stroke-width: 1.5;
+}
+
+.hero-alarm-head,
+.hero-alarm-text {
+    fill: var(--alarm);
+}
+
+.hero-alarm-text {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero-blink {
+    animation: hero-blink 1.2s steps(2, jump-none) infinite;
 }
 
 @keyframes hero-flow {
     to { stroke-dashoffset: -16; }
 }
 
+@keyframes hero-trend {
+    0%   { stroke-dashoffset: 1; opacity: 1; }
+    50%  { stroke-dashoffset: 0; }
+    90%  { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes hero-trend-out {
+    0%, 50% { stroke-dashoffset: 1; opacity: 1; }
+    65%  { stroke-dashoffset: 0; }
+    90%  { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes hero-callout {
+    0%, 63% { opacity: 0; }
+    68%, 90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes hero-blink {
+    50% { opacity: 0.2; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .hero-flow {
+    .hero-flow,
+    .hero-blink {
         animation: none;
+    }
+
+    .hero-trend {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+
+    .hero-callout {
+        animation: none;
+        opacity: 1;
     }
 }
