@@ -1727,3 +1727,56 @@ nav a {
         animation: none !important;
     }
 }
+
+
+/* Рисунок на главной: ПЛК → код → тренд */
+.hero-label {
+    fill: var(--muted);
+    font-size: 13px;
+}
+
+.hero-code {
+    fill: var(--accent);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.hero-led {
+    fill: var(--accent);
+}
+
+.hero-band {
+    fill: var(--line);
+    fill-opacity: 0.22;
+    stroke: var(--line);
+    stroke-dasharray: 3 3;
+}
+
+.hero-flow {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-dasharray: 6 10;
+    animation: hero-flow 1.2s linear infinite;
+}
+
+.hero-out {
+    stroke: var(--accent);
+}
+
+.hero-alarm {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+}
+
+@keyframes hero-flow {
+    to { stroke-dashoffset: -16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-flow {
+        animation: none;
+    }
+}
