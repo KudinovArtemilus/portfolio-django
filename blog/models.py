@@ -17,6 +17,7 @@ class Post(models.Model):
             ("data_gaps", "Данные с дырами"),
             ("carts_loop", "Тележки по кругу"),
             ("hydraulics", "Гидравлика и энкодер"),
+            ("go_gateway", "Шлюз на Go"),
         ],
     )
     is_published = models.BooleanField("Опубликована", default=False)

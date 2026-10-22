@@ -1855,3 +1855,78 @@ nav a {
         opacity: 1;
     }
 }
+
+/* Чертёж статьи: шлюз на Go */
+.project-drawing .ide-dot {
+    fill: var(--line);
+}
+
+.project-drawing .code-num {
+    fill: var(--line);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 10px;
+    text-anchor: end;
+}
+
+.project-drawing .code-line {
+    fill: currentColor;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 11px;
+    opacity: 0;
+    animation: appear 0.2s ease-out forwards;
+}
+
+.project-drawing .code-kw {
+    fill: var(--muted);
+    font-weight: 700;
+}
+
+.project-drawing .code-go {
+    fill: var(--accent);
+    font-weight: 700;
+}
+
+.project-drawing .code-highlight {
+    fill: var(--accent);
+    fill-opacity: 0.1;
+    opacity: 0;
+    animation: appear 0.4s ease-out 1.7s forwards;
+}
+
+.project-drawing .code-caret {
+    fill: var(--accent);
+    opacity: 0;
+    animation: blink 1s steps(1) 2.4s infinite;
+}
+
+.project-drawing .go-flow {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2.5;
+    stroke-dasharray: 4 8;
+    opacity: 0;
+    animation: appear 0.3s ease-out 2.4s forwards, go-flow 1.1s linear 2.4s infinite;
+}
+
+.project-drawing .go-led {
+    fill: var(--accent);
+    animation: blink 1.2s steps(1) 2.4s infinite;
+}
+
+@keyframes go-flow {
+    to { stroke-dashoffset: -12; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-drawing .code-line,
+    .project-drawing .code-highlight,
+    .project-drawing .go-flow {
+        animation: none;
+        opacity: 1;
+    }
+
+    .project-drawing .code-caret,
+    .project-drawing .go-led {
+        animation: none;
+    }
+}
