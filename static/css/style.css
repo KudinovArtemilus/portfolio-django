@@ -1930,3 +1930,12 @@ nav a {
         animation: none;
     }
 }
+
+.coddy-card img {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 0 1.5rem;
+}
