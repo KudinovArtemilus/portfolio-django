@@ -96,6 +96,9 @@ class Education(models.Model):
     institution = models.CharField("Учебное заведение", max_length=300)
     details = models.CharField("Уровень, специальность", max_length=300)
     year = models.PositiveIntegerField("Год окончания")
+    url = models.URLField(
+        "https://coddy.tech/certifications/ru/zyJIpO-go-uvjTCx", blank=True
+    )
 
     class Meta:
         ordering = ["-year"]

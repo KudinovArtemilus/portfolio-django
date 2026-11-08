@@ -1939,3 +1939,15 @@ nav a {
     border-radius: 8px;
     margin: 0 0 1.5rem;
 }
+
+.cert-link {
+    font-size: 0.9rem;
+}
+
+@media print {
+    .cert-link::after {
+        content: " (" attr(href) ")";
+        font-size: 0.75rem;
+        color: var(--muted);
+    }
+}

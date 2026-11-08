@@ -67,6 +67,9 @@
                         <div>
                             <h3>{{ item.institution }}</h3>
                             <p class="job-company">{{ item.details }}</p>
+                            {% if item.url %}
+                                <a class="cert-link" href="{{ item.url }}" target="_blank" rel="noopener">Сертификат ↗</a>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
