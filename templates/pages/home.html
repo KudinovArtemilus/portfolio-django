@@ -138,7 +138,9 @@
         <dl class="contacts-list">
             <div>
                 <dt>Почта</dt>
-                <dd><a href="mailto:KudinovArtemilus@gmail.com">KudinovArtemilus@gmail.com</a></dd>
+                {% with email=profile.email|default:"kudinovartemilus@gmail.com" %}
+                <dd><a href="mailto:{{ email }}">{{ email }}</a></dd>
+                {% endwith %}
             </div>
             <div>
                 <dt>Telegram</dt>
