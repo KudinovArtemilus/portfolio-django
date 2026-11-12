@@ -14,6 +14,7 @@ from .stats import (
     forecast_date,
     required_pace,
 )
+from .stepik import stepik_stats
 
 SNAKE_DAYS = 84
 
@@ -32,6 +33,7 @@ def goal_list(request):
     context = {
         "goals": goals.exclude(status="done"),
         "finished": goals.filter(status="done").order_by("-finished_at"),
+        "stepik": stepik_stats(),
     }
     return render(request, "goals/list.html", context)
 

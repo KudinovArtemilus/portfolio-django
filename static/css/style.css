@@ -1951,3 +1951,42 @@ nav a {
         color: var(--muted);
     }
 }
+/* Статистика Stepik на странице «Цели» */
+.stepik-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem 1.5rem;
+    max-width: 480px;
+    margin: 0 0 1.5rem;
+    padding: 0.8rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.stepik-card:hover {
+    border-color: var(--accent);
+}
+
+.stepik-name {
+    font-weight: 700;
+}
+
+.stepik-stat {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.stepik-stat b {
+    color: var(--text);
+    font-size: 1.15rem;
+}
+
+.stepik-arrow {
+    margin-left: auto;
+    color: var(--muted);
+}

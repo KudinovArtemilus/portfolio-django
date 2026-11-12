@@ -13,6 +13,14 @@
          alt="Прогресс обучения на Coddy: серия дней и опыт"
          width="1200" height="630" loading="lazy">
 </a>
+    {% if stepik %}
+        <a class="stepik-card" href="{{ stepik.url }}" target="_blank" rel="noopener">
+            <span class="stepik-name">Stepik</span>
+            <span class="stepik-stat"><b>{{ stepik.solved }}</b> решено задач</span>
+            <span class="stepik-stat"><b>{{ stepik.knowledge }}</b> очков знаний</span>
+            <span class="stepik-arrow" aria-hidden="true">↗</span>
+        </a>
+    {% endif %}
     <p class="page-intro">Чему я учусь сейчас: книги, курсы и ежедневная практика.</p>
 
     <div class="goal-list">
