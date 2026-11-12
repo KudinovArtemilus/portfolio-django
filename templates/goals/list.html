@@ -23,6 +23,7 @@
     {% endif %}
     <p class="page-intro">Чему я учусь сейчас: книги, курсы и ежедневная практика.</p>
 
+    {% if goals %}
     <div class="goal-list">
         {% for goal in goals %}
             <article class="goal-card">
@@ -33,7 +34,6 @@
                     {% elif goal.status != "active" %}
                         <span class="goal-badge">{{ goal.get_status_display }}</span>
                     {% endif %}
-                </div>
                 <p class="goal-meta">{{ goal.get_kind_display }} · с {{ goal.start_date|date:"j E" }}</p>
 
                 {% if goal.target_amount %}
