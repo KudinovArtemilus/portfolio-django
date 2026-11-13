@@ -1,0 +1,88 @@
+<svg viewBox="0 8 400 262" role="img" aria-labelledby="shp-title">
+    <title id="shp-title">Схема shpscan: пресс пишет каждый цикл в файл .shp, программа на ПК считает норму по архиву и находит отклонение, по нему оборудование ремонтируют до поломки</title>
+    <defs>
+        <marker id="arrow-shp" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0 L10 5 L0 10 z" class="flow-head"/>
+        </marker>
+    </defs>
+
+    <!-- Пресс: траверса, колонны, ползун, стол, заготовка -->
+    <rect class="wheel-part module" x="14" y="160" width="80" height="16" rx="2" pathLength="1"/>
+    <rect class="wheel-part module" x="18" y="176" width="10" height="60" pathLength="1" style="animation-delay: .1s"/>
+    <rect class="wheel-part module" x="80" y="176" width="10" height="60" pathLength="1" style="animation-delay: .1s"/>
+    <rect class="wheel-part module" x="36" y="176" width="36" height="24" rx="1" pathLength="1" style="animation-delay: .2s"/>
+    <rect class="wheel-part module" x="14" y="236" width="80" height="12" rx="2" pathLength="1" style="animation-delay: .25s"/>
+    <rect class="wheel-part module accent-line" x="40" y="222" width="28" height="14" rx="3" pathLength="1" style="animation-delay: .35s"/>
+
+    <!-- Регистратор: каждый цикл — файл -->
+    <path class="wheel-part wheel-thin" d="M54 160 V98" pathLength="1" marker-end="url(#arrow-shp)" style="animation-delay: .5s"/>
+
+    <!-- Архив файлов .shp -->
+    <path class="wheel-part module" d="M20 18 H60 L70 28 V68 H20 Z" pathLength="1" style="animation-delay: .6s"/>
+    <path class="wheel-part module" d="M26 24 H66 L76 34 V74 H26 Z" pathLength="1" style="animation-delay: .65s"/>
+    <path class="wheel-part module" d="M32 30 H72 L82 40 V90 H32 Z" pathLength="1" style="animation-delay: .7s"/>
+    <path class="wheel-part wheel-thin" d="M72 30 V40 H82" pathLength="1" style="animation-delay: .9s"/>
+
+    <!-- Файлы → ПК -->
+    <path class="wheel-part wheel-thin accent-line" d="M82 62 H150" pathLength="1" style="animation-delay: .9s"/>
+    <path class="go-flow" d="M82 62 H150"/>
+
+    <!-- ПК с программой -->
+    <rect class="wheel-part module" x="150" y="24" width="100" height="76" rx="4" pathLength="1" style="animation-delay: .8s"/>
+    <line class="wheel-part wheel-thin" x1="150" y1="38" x2="250" y2="38" pathLength="1" style="animation-delay: 1s"/>
+    <path class="wheel-part" d="M200 100 V112 M182 112 H218" pathLength="1" style="animation-delay: 1s"/>
+
+    <!-- ПК → сводка -->
+    <path class="wheel-part wheel-thin accent-line" d="M250 62 H282" pathLength="1" style="animation-delay: 1.1s"/>
+    <path class="go-flow" d="M250 62 H282"/>
+
+    <!-- Сводка по архиву: норма и отклонение -->
+    <rect class="wheel-part module" x="282" y="18" width="110" height="138" rx="3" pathLength="1" style="animation-delay: 1s"/>
+    <line class="wheel-part wheel-thin" x1="282" y1="32" x2="392" y2="32" pathLength="1" style="animation-delay: 1.2s"/>
+    <line class="wheel-part wheel-thin muted-line" x1="290" y1="128" x2="384" y2="128" pathLength="1" style="animation-delay: 1.2s"/>
+    <line class="wheel-part wheel-thin muted-line" x1="290" y1="88" x2="384" y2="88" pathLength="1" style="animation-delay: 1.3s"/>
+    <line class="extension late" x1="290" y1="72" x2="384" y2="72" stroke-dasharray="3 3"/>
+    <line class="extension late" x1="290" y1="104" x2="384" y2="104" stroke-dasharray="3 3"/>
+
+    <!-- Ремонт по данным: сводка → пресс -->
+    <path class="wheel-part wheel-thin accent-line" d="M337 156 C337 214 200 205 98 205" pathLength="1" marker-end="url(#arrow-shp)" style="animation-delay: 1.5s"/>
+
+    <!-- Гаечный ключ -->
+    <g transform="translate(228 236) rotate(-45)">
+        <path class="wheel-part module" d="M-3 -9 V-4 H3 V-9 A7 7 0 1 1 -3 -9 Z" pathLength="1" style="animation-delay: 1.7s"/>
+        <rect class="wheel-part module" x="-2.5" y="5" width="5" height="20" rx="2.5" pathLength="1" style="animation-delay: 1.8s"/>
+    </g>
+
+    <!-- Снова норма -->
+    <path class="wheel-part accent-line" d="M102 238 L108 244 L120 230" pathLength="1" style="animation-delay: 2.2s"/>
+
+    <g class="dimension-group">
+        <circle class="go-led" cx="24" cy="168" r="2.5"/>
+        <text class="label-text" x="57" y="68" text-anchor="middle">.shp</text>
+        <text class="muted-text" x="57" y="82" text-anchor="middle">1 цикл</text>
+        <text class="muted-text" x="60" y="134">регистратор</text>
+        <text class="muted-text" x="54" y="264" text-anchor="middle">пресс · стан</text>
+
+        <text class="muted-text" x="200" y="34" text-anchor="middle">shpscan.exe</text>
+        <text class="label-text" x="200" y="62" text-anchor="middle">показатели</text>
+        <text class="label-text" x="200" y="80" text-anchor="middle">норма · дрейф</text>
+        <text class="muted-text" x="200" y="126" text-anchor="middle">Go · без библиотек</text>
+
+        <text class="muted-text" x="337" y="28" text-anchor="middle">сводка по архиву</text>
+        <circle class="point" cx="296" cy="84" r="2.5"/>
+        <circle class="point" cx="307" cy="94" r="2.5"/>
+        <circle class="point" cx="318" cy="80" r="2.5"/>
+        <circle class="point" cx="329" cy="91" r="2.5"/>
+        <circle class="point" cx="340" cy="86" r="2.5"/>
+        <circle class="point" cx="351" cy="97" r="2.5"/>
+        <circle class="point" cx="373" cy="82" r="2.5"/>
+        <circle class="rec-dot" cx="362" cy="52" r="3.5"/>
+        <text class="rec-text" x="354" y="55" text-anchor="end">отклонение</text>
+        <text class="muted-text" x="384" y="118" text-anchor="end">норма ±3,5σ</text>
+        <text class="muted-text" x="337" y="144" text-anchor="middle">циклы →</text>
+
+        <text class="label-text" x="246" y="244">ремонт по данным</text>
+        <text class="label-text" x="126" y="241">снова норма</text>
+    </g>
+</svg>

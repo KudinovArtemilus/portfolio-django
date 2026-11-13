@@ -20,6 +20,7 @@ class Project(models.Model):
             ("screen_recorder", "Запись экрана"),
             ("oil_tray", "Трей и график температуры"),
             ("plc_analyzer", "Анализатор ПЛК"),
+            ("shpscan", "Анализ файлов .shp"),
         ],
     )
     order = models.PositiveIntegerField("Порядок", default=0)
