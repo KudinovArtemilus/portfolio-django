@@ -66,9 +66,27 @@
                         <p class="job-dates">{{ item.year }}</p>
                         <div>
                             <h3>{{ item.institution }}</h3>
-                            <p class="job-company">{{ item.details }}</p>
+                                                        {% if item.details %}
+                                <p class="job-company">{{ item.details }}</p>
+                            {% endif %}
                             {% if item.url %}
                                 <a class="cert-link" href="{{ item.url }}" target="_blank" rel="noopener">Сертификат ↗</a>
+                            {% endif %}
+                            {% if item.certificates.all %}
+                                <ul class="cert-list">
+                                    {% for cert in item.certificates.all %}
+                                        <li>
+                                            <span class="cert-title">{{ cert.title }}</span>
+                                            <span class="cert-year">{{ cert.year }}</span>
+                                            {% if cert.description %}
+                                                <span class="cert-description">{{ cert.description }}</span>
+                                            {% endif %}
+                                            {% if cert.url %}
+                                                <a class="cert-link" href="{{ cert.url }}" target="_blank" rel="noopener">Сертификат ↗</a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
                             {% endif %}
                         </div>
                     </div>

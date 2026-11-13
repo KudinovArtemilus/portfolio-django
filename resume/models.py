@@ -94,11 +94,9 @@ class Profile(models.Model):
 
 class Education(models.Model):
     institution = models.CharField("Учебное заведение", max_length=300)
-    details = models.CharField("Уровень, специальность", max_length=300)
+    details = models.CharField("Уровень, специальность", max_length=300, blank=True)
     year = models.PositiveIntegerField("Год окончания")
-    url = models.URLField(
-        "https://coddy.tech/certifications/ru/zyJIpO-go-uvjTCx", blank=True
-    )
+    url = models.URLField("Ссылка на сертификат", blank=True)
 
     class Meta:
         ordering = ["-year"]
@@ -107,3 +105,24 @@ class Education(models.Model):
 
     def __str__(self):
         return f"{self.institution} ({self.year})"
+
+
+class Certificate(models.Model):
+    education = models.ForeignKey(
+        Education,
+        on_delete=models.CASCADE,
+        related_name="certificates",
+        verbose_name="Учебное заведение",
+    )
+    title = models.CharField("Курс", max_length=200)
+    description = models.CharField("Описание", max_length=300, blank=True)
+    year = models.PositiveIntegerField("Год")
+    url = models.URLField("Ссылка на сертификат", blank=True)
+
+    class Meta:
+        ordering = ["-year", "title"]
+        verbose_name = "Сертификат"
+        verbose_name_plural = "Сертификаты"
+
+    def __str__(self):
+        return self.title

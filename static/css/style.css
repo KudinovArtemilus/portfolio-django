@@ -1990,3 +1990,34 @@ nav a {
     margin-left: auto;
     color: var(--muted);
 }
+
+/* Несколько сертификатов одной школы */
+.cert-list {
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+}
+
+.cert-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    padding: 0.4rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.cert-title {
+    font-weight: 500;
+}
+
+.cert-year {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.cert-description {
+    flex-basis: 100%;
+    color: var(--muted);
+    font-size: 0.9rem;
+}

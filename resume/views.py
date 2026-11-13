@@ -31,6 +31,6 @@ def about(request):
         "role_text": fill(profile.role) if profile else "",
         "experiences": experiences,
         "skill_groups": SkillGroup.objects.all(),
-        "education": Education.objects.all(),
+        "education": Education.objects.prefetch_related("certificates"),
     }
     return render(request, "resume/about.html", context)

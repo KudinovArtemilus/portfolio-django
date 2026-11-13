@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Education, Experience, Profile, SkillGroup
+from .models import Certificate, Education, Experience, Profile, SkillGroup
 
 
 @admin.register(Profile)
@@ -21,6 +21,12 @@ class SkillGroupAdmin(admin.ModelAdmin):
     list_editable = ["order"]
 
 
+class CertificateInline(admin.TabularInline):
+    model = Certificate
+    extra = 1
+
+
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
     list_display = ["institution", "year"]
+    inlines = [CertificateInline]
